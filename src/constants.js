@@ -1,0 +1,21 @@
+export const stages = [
+  "Checkout",
+  "Unit Test",
+  "Static Assessment",
+  "Build",
+  "Deploy",
+  "Functional Test",
+  "NexusIQ",
+  "Non-Functional Test",
+  "Security Test",
+  "Reporting",
+  "VeraCode",
+  "Tooling Installation",
+  "Notification & collaboration",
+  "Chef Roles",
+  "Cookbook_lbg_nginx",
+  "Cookbook_lbg_openJDK",
+  "Cookbook_lbg_deploy_api",
+  "UCD CI IBM APIC",
+  "Cleanup"
+]

@@ -1,0 +1,39 @@
+{
+  "Jenkins": {
+    "Mainframe": {
+      "Build": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Mainframe",
+          "Stage": "Build",
+          "Name": "endevor-integration_multi",
+          "Description": "Checkout COBOL or PL/I code from Endevor",
+          "Command": [
+            "pdsPull(cid,filter,creds,extn,destination)",
+            "endevorPull(cid,filter,creds,extn,destination)"
+          ],
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Endevor, SharedLib, Mainframe",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/endevor-integrations_multi.git",
+          "Platform": "multi",
+          "Dependencies": [
+            "compuware-scm-downloader",
+            "zos-connector"
+          ],
+          "Library": "endevor-integrations_multi@master",
+          "Config": "pipelines/conf/endevor-integrations_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/endevor-integrations_multi/blob/master/pipelines/conf/endevor-integrations_multi.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

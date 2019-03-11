@@ -1,0 +1,7 @@
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#galaxyComamnds}}
+{{& .}}
+{{/galaxyComamnds}}
+{{/isStageVisible}}
+{{/selectedItems}}

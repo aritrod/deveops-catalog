@@ -1,0 +1,28 @@
+{
+    "Chef": {
+        "Cookbook": {
+            "openJDK Installation": [{
+                "Solution": "Chef",
+                "Archetype": "Cookbook",
+                "Name": "lbg_openjdk",
+                "Description": "Cookbook to install openjdk",
+                "Command": [
+                    "recipe[lbg_openjdk]"
+                ],
+                "default_attributes": [{
+                    "openjdk_version": "1.8.0"
+                }],
+                "Stage": "Cookbook_lbg_openJDK",
+                "Minimum SolutionVersion": "1.0",
+                "Version": "master",
+                "Tags": "chef, cookbook, recipe, jdk, openjdk",
+                "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_openjdk.git",
+                "Platform": "multi",
+                "Dependencies": "",
+                "ConfigPath": "",
+                "Config": "",
+                "VarContent": []
+            }]
+        }
+    }
+}

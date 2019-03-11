@@ -1,0 +1,90 @@
+---
+  ucd:
+    server:
+      url: "https://localhost:8443"                                                     
+      credentials: "ucd"                                                               
+      javahome: "/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home"    
+    ctype:
+      update-myvalue-team: "Custom Component"         
+    application:                                       
+      name: "update-myvalue-app"                       
+      description: "This is test application"           
+      notificationScheme: "Notification scheme"        
+      templateName: "Lloyds - Standard Application Template"    
+      templateVersion: "Latest Version"                         
+      teams: "update-myvalue-team"                              
+      template/Troux ID: "AL08220"                             
+      template/appContactEmailID: "pmummasani@sapient.com"     
+      template/onboardingJira: "PSD2-12345"                    
+      template/PRN: "CS11234"                                   
+    component:                                                    
+      update-myvalue-component1:                                
+        name: "update-myvalue-component1"                       
+        defaultVersionType: "FULL"                                 
+        description: "This component is used for API test"       
+        importAutomatically: "false"                                
+        templateName: "Digital-OB-apic-tpp-template"                
+        useVfs: "false"                                             
+      update-myvalue-component2:                                    
+        name: "update-myvalue-component2"                             
+        defaultVersionType: "FULL"                                  
+        description: "This component is used for API test"          
+        importAutomatically: "false"                                 
+        templateName: "Digital-OB-apic-tpp-template"                  
+        useVfs: "false"                                               
+    environments:                                                      
+      SIT01: "Independent UAT Testing - 4 Eyes"                       
+      SIT02: "Independent UAT Testing - 4 Eyes"                       
+      NFT: "Independent UAT Testing - 4 Eyes"                          
+      LUAT01: "Digital - BR UAT Testing - 4 Eyes"                      
+      LUAT02: "Digital - BR UAT Testing - 4 Eyes"                       
+      PROD: "Prod"                                                      
+    addenvagents:                                                      
+      SIT01: "apptuv04c2.machine.test.group"                            
+      SIT02: "apptuv04c2.machine.test.group"                            
+      NFT: "apptuv04c2.machine.test.group"                                
+      LUAT01: "apptuv04c2.machine.test.group"                             
+      LUAT02: "apptuv04c2.machine.test.group"                             
+      PROD: "apptuv04c2.machine.test.group"                               
+    resourceProperties:                                                   
+      SIT01:                                                               
+        apic-org: "sit01"                                                 
+        apic-password: "dummy"                                            
+        apic-server: "apic-mgt.digital.service.test.group"                
+        apic-user: "8783553"                                              
+      SIT02:                                                              
+        apic-org: "sit02"                                                 
+        apic-password: "dummy"                                            
+        apic-server: "apic-mgt.digital.service.test.group"                
+        apic-user: "8783553"                                              
+      NFT:                                                                
+        apic-org: "nft01"                                                 
+        apic-password: "dummy"                                            
+        apic-server: "apic-mgt.digital.service.test.group"                
+        apic-user: "8783553"                                              
+      LUAT01:                                                               
+        apic-org: "luat01"                                                
+        apic-password: "dummy"                                             
+        apic-server: "apic-mgt.digital.service.group"                      
+        apic-user: "8783553"                                               
+      LUAT02:                                                               
+        apic-org: "luat02"                                               
+        apic-password: "dummy"                                           
+        apic-server: "apic-mgt.digital.service.group"                     
+        apic-user: "8783553"                                              
+      PROD:                                                                  
+        apic-org: "prod01"                                                
+        apic-password: "dummy"                                             
+        apic-server: "apic-mgt.digital.service.group"                       
+        apic-user: "8783553"                                                
+    componentproperties:                                                       
+      update-myvalue-component1:                                           
+        TOKEN_URL: "false"                                                  
+        TPS_VALUE: "true"                                                    
+        TPS_ENABLE: "true"                                                    
+        TLS_PROFILE: "false"                                                   
+      update-myvalue-component2:                                               
+        TOKEN_URL: "false"                                                     
+        TPS_VALUE: "true"                                                       
+        TPS_ENABLE: "true"                                                       
+        TLS_PROFILE: "false"                                                      

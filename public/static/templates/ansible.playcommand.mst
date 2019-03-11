@@ -1,0 +1,6 @@
+{{#selectedItems}}
+{{#isStageVisible}}
+ansible-galaxy install -p roles -r requirements.yml
+ansible-playbook -i inventory/production playbook.yml
+{{/isStageVisible}}
+{{/selectedItems}}

@@ -1,0 +1,14 @@
+{
+    "UrbanCode Deploy": {
+        "UCD_CI": {
+            "UCD CI IBM APIC": [
+                {
+                    "Solution": "UrbanCode Deploy",
+                    "Archetype": "UCD_CI",
+                    "Name": "UCD_CI_IBM_APIC",
+                    "isMultipleComponent": true
+                }
+            ]
+        }
+    }
+}

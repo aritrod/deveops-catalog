@@ -1,0 +1,1078 @@
+{
+  "Jenkins": {
+    "Java": {
+      "Functional Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "BDD",
+          "Description": "Ability to run BDD Tests using cucumber",
+          "Command": [
+            "container('java-build-tools'){",
+            "runBDDTests(archType : 'java' , buildTool : 'maven')",
+            "}"
+          ],
+          "Stage": "Functional Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Sonar, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bdd-java-maven_multi.git",
+          "Platform": "multi",
+          "Dependencies": "maven,java",
+          "Library": "bdd-java-maven_multi@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/bdd-java-maven_multi.yaml",
+          "Config": "pipelines/conf/bdd-java-maven_multi.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Deploy": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "BluemixDeploy",
+          "Description": "Deploying an App.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDeploy()",
+            "}"
+          ],
+          "Stage": "Deploy",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Deploy, App, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        },
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "BluemixDeployMockServers",
+          "Description": "Deploying Mock Servers.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDeployMockServers()",
+            "}"
+          ],
+          "Stage": "Deploy",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Deploy, Mock, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        },
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "helm-charts_nix",
+          "Description": "Ability to use Helm cli commands as groovy methods",
+          "Command": [
+            "container('kube-tools')  {",
+            "initHelm(phase: 'Init Helm Repo')",
+            "lintChart(chartPath: '$PROJECT_NAME')",
+            "repoAdd(repoName: 'harbor-charts', repoUrl: 'http://goharbor-sandbox.lbg.eu-gb.mybluemix.net/chartrepo/library', phase: 'Add helm repo')",
+            "packageChart(chartName: '$PROJECT_NAME', version: '$VERSION')",
+            "pushChart(chartName:'$PROJECT_NAME', repoName: 'harbor-charts', version: '$VERSION', credentialsId: 'harbor-creds')",
+            "upgradeRelease(chartName: '$PROJECT_NAME', repoUrl: 'harbor-charts', releaseName: '$PROJECT_NAME', version: '${VERSION}', namespace: '${NAMESPACE}', credentialsId: 'harbor-creds' )",
+            "testRelease(releaseName: '$PROJECT_NAME')",
+            "statusRelease(flags: '', releaseName: '$PROJECT_NAME')",
+            "}"
+          ],
+          "Stage": "Deployment",
+          "Helm cli version": "v2.7.2",
+          "Version": "1.0",
+          "Tags": "Jenkins, Helm, Kubernetes, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/helm-charts_nix.git",
+          "Platform": "unixs",
+          "Dependencies": "kubernetes cluster and helm cli binary",
+          "Library": "helm-charts_nix@master",
+          "Config": "None",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Cleanup": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "BluemixDestroy",
+          "Description": "Destroy Mock Servers and App.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDestroy()",
+            "}"
+          ],
+          "Stage": "Cleanup",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Cleanup, Destroy, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Reporting": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "e-mail",
+          "Description": "Notification library for e-mail",
+          "Command": [
+            "container('puppeteer'){",
+            "  blueOceanScreenShot()",
+            "}",
+            "emailNotify()"
+          ],
+          "Stage": "Reporting",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Notification, SharedLib, Email",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/notifications_multi.git",
+          "Platform": "multi",
+          "Dependencies": "email-ext, blueocean",
+          "Library": "notfications_multi@master",
+          "Config": "pipelines/conf/notifications.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/notifications.yaml",
+          "imageList": [
+            "- name: puppeteer",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/buildkite/puppeteer",
+            "  imagePullPolicy: IfNotPresent",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Checkout": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "GitflowEnablers",
+          "Description": "To determine the git work flow based on Branch name",
+          "Command": [
+            "echo 'Checking git workflow'",
+            "echo 'gitWorkFlow: ${gitWorkFlow}'"
+          ],
+          "Stage": "Checkout",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Gitflow, SharedLib, Branch rules",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/gitflowEnablers_multi.git",
+          "Platform": "multi",
+          "Dependencies": "pipelineplugin",
+          "Library": "gitflowEnablers_multi@master",
+          "Config": "",
+          "Environment": [
+            "gitWorkFlow = gitWorkFlowTypeByBranchRule()",
+            "envVar = 'envVarValue'"
+          ],
+          "Global": [
+            "def globalVar = 'globalVarValue'"
+          ],
+          "GlobalAgent": "testAgent",
+          "StageAgent": "master"
+        }
+      ],
+      "Unit Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "UnitTest",
+          "Description": "Ability to run Unit Tests",
+          "Command": [
+            "container('java-build-tools'){",
+            "runUnitTest(archType: 'Java', buildTool: 'maven')",
+            "}"
+          ],
+          "Stage": "Unit Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Maven, SharedLib, UnitTest",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/java-maven-unitTests_multi",
+          "Platform": "multi",
+          "Dependencies": "java, maven, pipelineplugin",
+          "Library": "java-maven-unitTests_multi@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/java-maven-unit-test_nix.yaml",
+          "Config": "pipelines/conf/java-maven-unit-test_nix.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Build": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "Java Maven Build",
+          "Description": "Creating an build archive for a Java project using Maven as build tool.",
+          "Command": [
+            "container('java-build-tools'){",
+            "runMavenBuild()",
+            "}"
+          ],
+          "Stage": "Build",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Maven, Java, Build, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/java-maven-build_nix",
+          "Platform": "nix",
+          "Dependencies": "gitflowEnablers_multi@master",
+          "Library": "java-maven-build_nix@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/java-maven-build.yaml",
+          "Config": "pipelines/conf/java-maven-build",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "NexusIQ": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "NexusIQ",
+          "Description": "Sonatype nexusIQ is a service for security scans of dependencies and packages",
+          "Command": [
+            "container('java-build-tools') {",
+            "  runNexusIQ()",
+            "}"
+          ],
+          "Stage": "Functional Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, SharedLib, NexusIQ",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi",
+          "Platform": "multi",
+          "Dependencies": "java",
+          "Library": "nexusiq_multi@master",
+          "Config": "pipelines/conf/nexusIQ_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi/blob/master/pipelines/conf/nexusIQ_multi.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Security Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "Zap Security Scan",
+          "Description": "OWASZAP tool for vulnerabilities scan",
+          "Command": [
+            "container('owasp-zap')  {",
+            "runZapProxy()",
+            "}",
+            "container('node')  {",
+            "echo 'Execute BDD step here'",
+            "}",
+            "container('owasp-zap')  {",
+            "runAscan()",
+            "runGenerateReport()",
+            "}"
+          ],
+          "Stage": "Functional Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Security, Zap, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/zap-scan_multi.git",
+          "Platform": "multi",
+          "Dependencies": "HTML-Publisher-Plugin",
+          "Library": "zap-scan_multi@master",
+          "Config": "pipelines/conf/zap.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    },
+    "NodeJS": {
+      "Functional Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "BDD",
+          "Description": "Ability to run BDD Tests using cucumber",
+          "Command": [
+            "container('java-build-tools'){",
+            "runBDDTests(archType : 'java' , buildTool : 'maven')",
+            "}"
+          ],
+          "Stage": "Functional Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Sonar, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bdd-java-maven_multi.git",
+          "Platform": "multi",
+          "Dependencies": "maven,java",
+          "Library": "bdd-java-maven_multi@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/bdd-java-maven_multi.yaml",
+          "Config": "pipelines/conf/bdd-java-maven_multi.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Deploy": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "BluemixDeploy",
+          "Description": "Deploying an App.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDeploy()",
+            "}"
+          ],
+          "Stage": "Deploy",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Deploy, App, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        },
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "BluemixDeployMockServers",
+          "Description": "Deploying Mock Servers.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDeployMockServers()",
+            "}"
+          ],
+          "Stage": "Deploy",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, NodeJS, Deploy, Mock, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Cleanup": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "BluemixDestroy",
+          "Description": "Destroy Mock Servers and App.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDestroy()",
+            "}"
+          ],
+          "Stage": "Cleanup",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, NodeJS, Cleanup, Destroy, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Reporting": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "e-mail",
+          "Description": "Notification library for e-mail",
+          "Command": [
+            "container('puppeteer'){",
+            "  blueOceanScreenShot()",
+            "}",
+            "emailNotify()"
+          ],
+          "Stage": "Reporting",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, NodeJS, Notification, e-mail",
+          "Github Repo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/notifications_multi.git",
+          "Platform": "multi",
+          "Dependencies": "email-ext, blueocean",
+          "Library": "notfications_multi@master",
+          "Config": "pipelines/conf/notifications.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/notifications.yaml",
+          "imageList": [
+            "- name: puppeteer",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/buildkite/puppeteer",
+            "  imagePullPolicy: IfNotPresent",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Checkout": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "GitflowEnablers",
+          "Description": "To determine the git work flow based on Branch name",
+          "Command": [
+            "echo 'Checking git workflow'",
+            "echo 'gitWorkFlow: ${gitWorkFlow}'"
+          ],
+          "Stage": "Checkout",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Gitflow, SharedLib, Branch rules",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/gitflowEnablers_multi.git",
+          "Platform": "multi",
+          "Dependencies": "pipelineplugin",
+          "Library": "gitflowEnablers_multi@master",
+          "Config": "",
+          "Environment": [
+            "gitWorkFlow = gitWorkFlowTypeByBranchRule()",
+            "envVar = 'envVarValue'"
+          ],
+          "Global": [
+            "def globalVar = 'globalVarValue'"
+          ],
+          "GlobalAgent": "testAgent",
+          "StageAgent": "master"
+        }
+      ],
+      "NexusIQ": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "NexusIQ",
+          "Description": "Sonatype nexusIQ is a service for security scans of dependencies and packages",
+          "Command": [
+            "container('java-build-tools') {",
+            "  runNexusIQ()",
+            "}"
+          ],
+          "Stage": "NexusIQ",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, SharedLib, NexusIQ",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi",
+          "Platform": "multi",
+          "Dependencies": "java",
+          "Library": "nexusiq_multi@master",
+          "Config": "pipelines/conf/nexusIQ_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi/blob/master/pipelines/conf/nexusIQ_multi.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Build": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "NodeJS NPM Build",
+          "Description": "Creating an build archive for a NodeJS project using NPM scripts as build tool.",
+          "Command": [
+            "container('node6') {",
+            "  runNPMBuild",
+            "}"
+          ],
+          "Stage": "Build",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, NodeJS, NPM, Build, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/build-nodejs_nix",
+          "Platform": "nix",
+          "Dependencies": "workflowLibs",
+          "Library": "npm-bulid@master",
+          "Config": "pipelines/conf/build.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/build-nodejs_nix/blob/master/pipelines/conf/build.yaml",
+          "imageList": [
+            "- name: node6",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/node:6.10.2",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ],
+      "Unit Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "sonarQube_multi",
+          "Description": "Ability to run Sonar",
+          "Command": [
+            "container('sonar-scanner-tools') {",
+            "runSonar{}",
+            "}"
+          ],
+          "Stage": "Unit Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Sonar, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/sonarQube_multi.git",
+          "Platform": "multi",
+          "Dependencies": "Pipeline-utility-step",
+          "Library": "sonarqube@master",
+          "Config": "pipelines/conf/sonarQube_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/sonarQube_multi.yaml",
+          "imageList": [
+            "- name: sonar-scanner-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/sonar-scanner-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    },
+    "Mainframe": {
+      "Build": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Mainframe",
+          "Stage": "Build",
+          "Name": "endevor-integration_multi",
+          "Description": "Checkout COBOL or PL/I code from Endevor",
+          "Command": [
+            "pdsPull(cid,filter,creds,extn,destination)",
+            "endevorPull(cid,filter,creds,extn,destination)"
+          ],
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Endevor, SharedLib, Mainframe",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/endevor-integrations_multi.git",
+          "Platform": "multi",
+          "Dependencies": [
+            "compuware-scm-downloader",
+            "zos-connector"
+          ],
+          "Library": "endevor-integrations_multi@master",
+          "Config": "pipelines/conf/endevor-integrations_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/endevor-integrations_multi/blob/master/pipelines/conf/endevor-integrations_multi.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    },
+    "Python": {
+      "Install Dependencies": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Python",
+          "Name": "InstallDependencies",
+          "Description": "Ability to install python modules",
+          "Command": [
+            "container('python'){",
+            "installDependencies(archType: 'Python')",
+            "}"
+          ],
+          "Stage": "Install Dependencies",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Python, pip, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/python-installDependencies_multi",
+          "Platform": "multi",
+          "Dependencies": "python, pip, pipelineplugin",
+          "Library": "python-installDependencies_multi@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mm-ds-python-sample/tree/mukulUTSharedLib/pipelines/conf/python-installDependencies_multi.yaml",
+          "Config": "pipelines/conf/python-installDependencies_multi.yaml",
+          "imageList": [
+            "- name: python",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/python:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        },
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Python",
+          "Name": "Unit Test",
+          "Description": "Ability to run python unit tests",
+          "Command": [
+            "container('python'){",
+            "runUnitTest(archType: 'Python')",
+            "}"
+          ],
+          "Stage": "Unit Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Python, Unit Test, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/python-unitTests_nix",
+          "Platform": "multi",
+          "Dependencies": "python, unittest, pipelineplugin",
+          "Library": "python-unitTests_nix@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mm-ds-python-sample/tree/mukulUTSharedLib/pipelines/conf/python-unit-test_nix.yaml",
+          "Config": "pipelines/conf/python-unit-test_nix.yaml",
+          "imageList": [
+            "- name: python",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/python:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    },
+    "Scheduler": {
+      "VeraCode": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": [
+            "Scheduler"
+          ],
+          "Name": "Veracode Download Report",
+          "Description": "Ability to run Veracode scan",
+          "Command": [
+            "container('java-build-tools'){",
+            "runDownloadPdf()",
+            "}"
+          ],
+          "Stage": "Security Scanning",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, VeraCode, SecurityScanning, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/veraCode_multi.git",
+          "Platform": "multi",
+          "Dependencies": "Pipeline-utility-step",
+          "Library": "java-maven-build_nix@master",
+          "Config": "pipelines/conf/veracode.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/veraCode_multi/blob/master/examples/pipelines/conf/veracode.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        },
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Scheduler",
+          "Name": "Veracode Scan Code",
+          "Description": "Ability to run Veracode scan",
+          "Command": [
+            "container('java-build-tools'){",
+            "dir('ScanningFilesFromStash') {",
+            "unstash 'artifactStash'",
+            "runVeraCode()",
+            "}",
+            "}"
+          ],
+          "Stage": "Security Scanning",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, VeraCode, SecurityScanning, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/veraCode_multi.git",
+          "Platform": "multi",
+          "Dependencies": "Pipeline-utility-step",
+          "Library": "java-maven-build_nix@master",
+          "Config": "pipelines/conf/veracode.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/veraCode_multi/blob/master/examples/pipelines/conf/veracode.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    }
+  },
+  "Ansible": {
+    "Roles": {
+      "Tooling Installation": [
+        {
+          "Solution": "Playbook",
+          "Archetype": "Roles",
+          "Name": "JDK",
+          "Description": "JDK install role",
+          "RoleName": "ansible-role-jdk-install",
+          "Command": [
+            "ansible-galaxy install -p roles -r requirements.yml"
+          ],
+          "GalaxyImport": [
+            "- src: git+https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-jdk-install",
+            "  version: master"
+          ],
+          "Stage": "Tooling Installation",
+          "Minimum SolutionVersion": "2.4",
+          "Version": "master",
+          "Tags": "ansible, ansible-galaxy, jdk, ansible-roles",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-jdk-install.git",
+          "Platform": "multi",
+          "Dependencies": "",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-jdk-install/blob/master/roles/jdk-install/defaults/main.yml",
+          "Config": "vars/main.yml",
+          "VarContent": [
+            "jdk_nexus_path: http://nexus.sandbox.extranet.group/nexus/content/repositories/binaries/jdk",
+            "java_download_folder: /apps/tools",
+            "java_versions:",
+            "  jdk1.8.0_77:",
+            "    version: 1.8.0_77",
+            "    dist_file: jdk-8u77-linux-x64.tar.gz"
+          ]
+        },
+        {
+          "Solution": "Playbook",
+          "Archetype": "Roles",
+          "Name": "NodeJS",
+          "Description": "NodeJS install role",
+          "RoleName": "ansible-role-nodejs-install",
+          "Command": [
+            "ansible-galaxy install -p roles -r requirements.yml"
+          ],
+          "GalaxyImport": [
+            "- src: git+https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-nodejs-install",
+            "  version: master"
+          ],
+          "Stage": "Tooling Installation",
+          "Minimum SolutionVersion": "2.4",
+          "Version": "master",
+          "Tags": "ansible, ansible-galaxy, node, ansible-roles",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-nodejs-install.git",
+          "Platform": "multi",
+          "Dependencies": "",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-nodejs-install/blob/master/roles/ansible-role-nodejs-install/defaults/main.yml",
+          "Config": "vars/main.yml",
+          "VarContent": [
+            "nexus_url: http://nexus.sandbox.extranet.group/nexus/content/repositories",
+            "node_destination_dir: /opt/node",
+            "node_version: 8.11.4"
+          ]
+        }
+      ],
+      "Notification & collaboration": [
+        {
+          "Solution": "Playbook",
+          "Archetype": "Roles",
+          "Name": "Build Notification",
+          "Description": "Role to implement build notification",
+          "RoleName": "ansible-role-build-notification",
+          "Command": [
+            "ansible-galaxy install -p roles -r requirements.yml"
+          ],
+          "GalaxyImport": [
+            "- src: git+https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-build-notification",
+            "  version: master"
+          ],
+          "Stage": "Notification & collaboration",
+          "Minimum SolutionVersion": "2.4",
+          "Version": "master",
+          "Tags": "ansible, ansible-galaxy, notification, collaboration, ansible-roles",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-build-notification.git",
+          "Platform": "multi",
+          "Dependencies": "",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-build-notification/blob/master/roles/ansible-role-build-notification/defaults/main.yml",
+          "Config": "vars/main.yml",
+          "VarContent": [
+            "hipchat_api_url: 'https://hipchat.devops.lloydsbanking.com/v2/",
+            "hipchat_room: 1234",
+            "hipchat_token: ******"
+          ]
+        }
+      ]
+    }
+  },
+  "Chef": {
+    "Cookbook": {
+      "JAVA API & CWA Deployment": [
+        {
+          "Solution": "Chef",
+          "Archetype": "Cookbook",
+          "Name": "lbg_deploy_api::deploy",
+          "Description": "Cookbook to deploy java apis",
+          "Command": [
+            "recipe[lbg_deploy_api::deploy]"
+          ],
+          "default_attributes": [
+            {
+              "api_names": "api-1,api-2",
+              "api_details": {
+                "api-1": {
+                  "api_name": "api-1",
+                  "port": "",
+                  "version": "",
+                  "trust_store_path": "",
+                  "trust_store_password_path": "",
+                  "key_store_path": "",
+                  "key_store_password_path": "",
+                  "key_store_type": "",
+                  "kerberos_conf_path": "",
+                  "login_config_path": "",
+                  "artifact_id": "",
+                  "install_api": ""
+                },
+                "database": {
+                  "user": "",
+                  "password": ""
+                }
+              }
+            }
+          ],
+          "Stage": "JAVA API & CWA Deployment",
+          "Minimum SolutionVersion": "1.0",
+          "Version": "master",
+          "Tags": "chef, cookbook, recipe, java-api, deploy-api",
+          "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_deploy_api.git",
+          "Platform": "multi",
+          "Dependencies": "",
+          "ConfigPath": "",
+          "Config": "",
+          "VarContent": []
+        },
+        {
+          "Solution": "Chef",
+          "Archetype": "Cookbook",
+          "Name": "lbg_deploy_api::deploy_cwa",
+          "Description": "Cookbook to deploy cwa code",
+          "Command": [
+            "recipe[lbg_deploy_api::deploy_cwa]"
+          ],
+          "default_attributes": [
+            {}
+          ],
+          "Stage": "JAVA API & CWA Deployment",
+          "Minimum SolutionVersion": "1.0",
+          "Version": "master",
+          "Tags": "chef, cookbook, recipe, cwa, deploy-cwa",
+          "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_deploy_api.git",
+          "Platform": "multi",
+          "Dependencies": "",
+          "ConfigPath": "",
+          "Config": "",
+          "VarContent": []
+        }
+      ],
+      "NGINX Installation": [
+        {
+          "Solution": "Chef",
+          "Archetype": "Cookbook",
+          "Name": "lbg_nginx",
+          "Description": "Cookbook to install nginx for cwa",
+          "Command": [
+            "recipe[lbg_nginx]"
+          ],
+          "default_attributes": [
+            {
+              "lbg_server_details_app_tier": "",
+              "support_user": "",
+              "application_user": "",
+              "application_group": "",
+              "java_opts": "-Xmx256m -Xms128m",
+              "nexus_base_url": "",
+              "nexus_repo": "",
+              "cwa_nexus_repo": "",
+              "modelmaker_home": "",
+              "cwa_home": "",
+              "certpath": "",
+              "cert_names": [],
+              "api_names": "api-1,api-2",
+              "api_details": {
+                "api-1": {
+                  "api_name": "api-1",
+                  "location_context": "",
+                  "proxy_context": "",
+                  "proxy_ssl_verify": "",
+                  "port": "",
+                  "version": "",
+                  "proxy_trust_cert_name": "",
+                  "servers": [],
+                  "nginx_masters": []
+                }
+              },
+              "lbg_nginx": {
+                "masters": [],
+                "load_balancer_ip": "",
+                "audit": {
+                  "https_port": "",
+                  "cwa_home": "",
+                  "cwa_version": "",
+                  "log_dir": "",
+                  "nexus_repo": "",
+                  "package_prefix": "",
+                  "cwa": ""
+                },
+                "config_home": "/etc/nginx",
+                "application_site_enabled": "true",
+                "https_port": 443,
+                "http_port": 80,
+                "ssl_enabled": "",
+                "re_install": ""
+              },
+              "http_headers": {
+                "X-Frame-Options": "DENY",
+                "X-XSS-Protection": "1",
+                "X-Content-Type-Options": "nosniff"
+              }
+            }
+          ],
+          "Stage": "NGINX Installation",
+          "Minimum SolutionVersion": "1.0",
+          "Version": "master",
+          "Tags": "chef, cookbook, recipe, nginx, proxy, cwa",
+          "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_nginx.git",
+          "Platform": "multi",
+          "Dependencies": "",
+          "ConfigPath": "",
+          "Config": "",
+          "VarContent": []
+        }
+      ],
+      "openJDK Installation": [
+        {
+          "Solution": "Chef",
+          "Archetype": "Cookbook",
+          "Name": "lbg_openjdk",
+          "Description": "Cookbook to install openjdk",
+          "Command": [
+            "recipe[lbg_openjdk]"
+          ],
+          "default_attributes": [
+            {
+              "openjdk_version": "1.8.0"
+            }
+          ],
+          "Stage": "Cookbook_lbg_openJDK",
+          "Minimum SolutionVersion": "1.0",
+          "Version": "master",
+          "Tags": "chef, cookbook, recipe, jdk, openjdk",
+          "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_openjdk.git",
+          "Platform": "multi",
+          "Dependencies": "",
+          "ConfigPath": "",
+          "Config": "",
+          "VarContent": []
+        }
+      ]
+    }
+  },
+  "UrbanCode Deploy": {
+    "UCD_CI": {
+      "UCD CI IBM APIC": [
+        {
+          "Solution": "UrbanCode Deploy",
+          "Archetype": "UCD_CI",
+          "Name": "UCD_CI_IBM_APIC",
+          "isMultipleComponent": true
+        }
+      ]
+    }
+  }
+}

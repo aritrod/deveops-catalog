@@ -1,0 +1,62 @@
+{
+  "Jenkins": {
+    "Java": {
+      "Checkout": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "GitflowEnablers",
+          "Description": "To determine the git work flow based on Branch name",
+          "Command": [
+            "echo 'Checking git workflow'",
+            "echo 'gitWorkFlow: ${gitWorkFlow}'"
+          ],
+          "Stage": "Checkout",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Gitflow, SharedLib, Branch rules",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/gitflowEnablers_multi.git",
+          "Platform": "multi",
+          "Dependencies": "pipelineplugin",
+          "Library": "gitflowEnablers_multi@master",
+          "Config": "",
+          "Environment": [
+            "gitWorkFlow = gitWorkFlowTypeByBranchRule()",
+            "envVar = 'envVarValue'"],
+          "Global": ["def globalVar = 'globalVarValue'"],
+          "GlobalAgent": "testAgent",
+          "StageAgent": "master"
+        }
+      ]
+    },
+    "NodeJS": {
+      "Checkout": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "GitflowEnablers",
+          "Description": "To determine the git work flow based on Branch name",
+          "Command": [
+            "echo 'Checking git workflow'",
+            "echo 'gitWorkFlow: ${gitWorkFlow}'"
+          ],
+          "Stage": "Checkout",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Gitflow, SharedLib, Branch rules",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/gitflowEnablers_multi.git",
+          "Platform": "multi",
+          "Dependencies": "pipelineplugin",
+          "Library": "gitflowEnablers_multi@master",
+          "Config": "",
+          "Environment": [
+            "gitWorkFlow = gitWorkFlowTypeByBranchRule()",
+            "envVar = 'envVarValue'"],
+          "Global": ["def globalVar = 'globalVarValue'"],
+          "GlobalAgent": "testAgent",
+          "StageAgent": "master"
+        }
+      ]
+    }
+  }
+}

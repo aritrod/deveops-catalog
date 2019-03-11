@@ -1,0 +1,37 @@
+{
+  "Jenkins": {
+    "Java": {
+      "Build": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "Java Maven Build",
+          "Description": "Creating an build archive for a Java project using Maven as build tool.",
+          "Command": [
+          "container('java-build-tools'){", 
+              "runMavenBuild()",
+              "}"
+          ],
+          "Stage": "Build",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Maven, Java, Build, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/java-maven-build_nix",
+          "Platform": "nix",
+          "Dependencies": "gitflowEnablers_multi@master",
+          "Library": "java-maven-build_nix@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/java-maven-build.yaml",
+          "Config":  "pipelines/conf/java-maven-build",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

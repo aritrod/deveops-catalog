@@ -1,0 +1,93 @@
+---
+  ucd:
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#serverDetails}}
+    server:
+      url: "{{& serverURL}}"                                                      
+      credentials: "{{& credentials}}"                                                               
+      javahome: "{{& java_home}}"    
+{{/serverDetails}}
+{{/isStageVisible}}
+{{/selectedItems}}      
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#cType}}
+    ctype:
+      {{& team_name}}: "Custom Component"         
+{{/cType}}
+{{/isStageVisible}}
+{{/selectedItems}}
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#appDetails}}
+    application:                                       
+      name: "{{& app_Name}}"                       
+      description: "descripotion of - {{& app_Name}}"           
+      notificationScheme: "Notification scheme"        
+      templateName: "{{& templateName}}"    
+      templateVersion: "Latest Version"                         
+      teams: "{{& team_name}}"                              
+      template/Troux ID: "{{& app_trouxID}}"
+      template/appContactEmailID: "{{& app_ContactEmailID}}"       
+      template/onboardingJira: "{{& app_onboardingJira}}"
+      template/PRN: ""{{& app_PRN_ID}}""
+{{/appDetails}}
+{{/isStageVisible}}
+{{/selectedItems}}
+    component:
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#compDetails}}
+      {{#.}}
+      {{& compName}}:
+        {{#compProps}}
+        {{& .}}
+        {{/compProps}}
+      {{/.}}
+{{/compDetails}}
+{{/isStageVisible}}
+{{/selectedItems}}
+    environments:
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#envDetails}}
+      {{& .}}
+{{/envDetails}}
+{{/isStageVisible}}
+{{/selectedItems}}
+    addenvagents:
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#addEnvAgents}}
+      {{& .}}
+{{/addEnvAgents}}
+{{/isStageVisible}}
+{{/selectedItems}}
+    resourceProperties:  
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#resourceProperties}}
+      {{#.}}
+      {{& resourceName}}:
+        {{#propertDetails}}
+        {{& .}}
+        {{/propertDetails}}
+      {{/.}}
+{{/resourceProperties}}
+{{/isStageVisible}}
+{{/selectedItems}}
+    componentproperties:  
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#componentproperties}}
+      {{#.}}
+      {{& componentName}}:
+        {{#propertDetails}}
+        {{& .}}
+        {{/propertDetails}}
+      {{/.}}
+{{/componentproperties}}
+{{/isStageVisible}}
+{{/selectedItems}}
+

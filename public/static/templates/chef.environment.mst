@@ -1,0 +1,7 @@
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#variablesData}}
+{{& .}}
+{{/variablesData}}
+{{/isStageVisible}}
+{{/selectedItems}}

@@ -1,0 +1,56 @@
+#!/bin/groovy
+
+library identifier: 'bdd-tests_multi@master', retriever: modernSCM([$class: 'GitSCMSource',
+	remote: 'git@github.lbg.eu-gb.bluemix.net:jenkins-shared-library/bdd-java-maven_multi.git',
+	credentialsId: 'poc13-gheuser-ssh'])
+library identifier: 'bdd-tests_multi@master', retriever: modernSCM([$class: 'GitSCMSource',
+	remote: 'git@github.lbg.eu-gb.bluemix.net:pas-test/nexus-publish.git',
+	credentialsId: 'poc13-gheuser-ssh'])
+
+@Library('gitflowEnablers_multi@master')
+@Library('java-maven-unitTests_multi@master')	 
+@Library('sonarQube_multi@scovrage-test')	 
+@Library('java-maven-build_nix@master')	
+@Library('notifications_multi@master') _
+
+pipeline {
+        agent none
+    options { 
+        ansiColor('xterm') 
+    }
+	stages {
+		stage ('Checkout') {
+		        agent { label "PAS-DEV-HDP" }
+			steps {	
+				script {
+					echo "Checking git workflow"
+					def gitWorkFlow = gitWorkFlowTypeByBranchRule()
+					echo "gitWorkFlow: ${gitWorkFlow}"					
+				}
+			}
+		}		    
+		stage ('Build') {
+	                agent { label "PAS-DEV-HDP" }
+			steps{
+			   runMavenBuild()
+			   echo "BDD execution "
+			   runBDDTests(archType : 'java' , buildTool : 'maven')	
+			}
+		} 
+        stage ('sonar') {
+	        agent { label "docker-slave" }
+			steps{
+        		runSonar{}
+    			junit allowEmptyResults: true, testResults: '**/TEST*.xml'			
+		}
+            } 
+   }
+	post {
+		always {
+			script {						
+			echo "Taking screenshot using puppeteer"
+			}	
+		}
+	}
+}
+

@@ -1,0 +1,72 @@
+{
+  "Jenkins": {
+    "Java": {
+      "Unit Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "sonarQube_multi",
+          "Description": "Ability to run Sonar",
+          "Command": [
+            "container('sonar-scanner-tools') {",
+              "runSonar{}",
+            "}"
+          ],
+          "Stage": "Unit Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Sonar, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/sonarQube_multi.git",
+          "Platform": "multi",
+          "Dependencies": "Pipeline-utility-step",
+          "Library": "sonarqube@master",
+          "Config": "pipelines/conf/sonarQube_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/sonarQube_multi.yaml",
+          "imageList": [
+            "- name: sonar-scanner-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/sonar-scanner-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  },
+  "Jenkins": {
+    "NodeJS": {
+      "Unit Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "sonarQube_multi",
+          "Description": "Ability to run Sonar",
+          "Command": [
+            "container('sonar-scanner-tools') {",
+              "runSonar{}",
+            "}"
+          ],
+          "Stage": "Unit Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Sonar, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/sonarQube_multi.git",
+          "Platform": "multi",
+          "Dependencies": "Pipeline-utility-step",
+          "Library": "sonarqube@master",
+          "Config": "pipelines/conf/sonarQube_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/sonarQube_multi.yaml",
+          "imageList": [
+            "- name: sonar-scanner-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/sonar-scanner-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

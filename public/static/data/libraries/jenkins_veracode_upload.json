@@ -1,0 +1,40 @@
+{
+  "Jenkins": {
+    "Scheduler": {
+      "VeraCode": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Scheduler",
+          "Name": "Veracode Scan Code",
+          "Description": "Ability to run Veracode scan",
+          "Command": [
+            "container('java-build-tools'){",
+              "dir('ScanningFilesFromStash') {",
+                "unstash 'artifactStash'",
+                "runVeraCode()",
+              "}",
+            "}"
+          ],
+          "Stage": "Security Scanning",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, VeraCode, SecurityScanning, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/veraCode_multi.git",
+          "Platform": "multi",
+          "Dependencies": "Pipeline-utility-step",
+          "Library": "java-maven-build_nix@master",
+          "Config":"pipelines/conf/veracode.yaml",
+          "ConfigPath":"https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/veraCode_multi/blob/master/examples/pipelines/conf/veracode.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "Jenkins": {
+    "Python": {
+      "Install Dependencies": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Python",
+          "Name": "InstallDependencies",
+          "Description": "Ability to install python modules",
+          "Command": [
+          "container('python'){", 
+              "installDependencies(archType: 'Python')",
+              "}"
+          ],
+          "Stage": "Install Dependencies",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Python, pip, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/python-installDependencies_multi",
+          "Platform": "multi",
+          "Dependencies": "python, pip, pipelineplugin",
+          "Library": "python-installDependencies_multi@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mm-ds-python-sample/tree/mukulUTSharedLib/pipelines/conf/python-installDependencies_multi.yaml",
+          "Config": "pipelines/conf/python-installDependencies_multi.yaml",
+          "imageList": [
+            "- name: python",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/python:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "Ansible": {
+        "Roles": {
+            "Notification & collaboration": [
+                {
+                    "Solution": "Playbook",
+                    "Archetype": "Roles",
+                    "Name": "Build Notification",
+                    "Description": "Role to implement build notification",
+                    "RoleName":"ansible-role-build-notification",                    
+                    "Command": [
+                        "ansible-galaxy install -p roles -r requirements.yml"
+                    ],
+                    "GalaxyImport": [
+                        "- src: git+https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-build-notification",
+                        "  version: master"
+                    ],
+                    "Stage": "Notification & collaboration",
+                    "Minimum SolutionVersion": "2.4",
+                    "Version": "master",
+                    "Tags": "ansible, ansible-galaxy, notification, collaboration, ansible-roles", 
+                    "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-build-notification.git",
+                    "Platform": "multi",
+                    "Dependencies": "",
+                    "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-build-notification/blob/master/roles/ansible-role-build-notification/defaults/main.yml",
+                    "Config":  "vars/main.yml",
+                    "VarContent":[
+                        "hipchat_api_url: 'https://hipchat.devops.lloydsbanking.com/v2/",
+                        "hipchat_room: 1234",
+                        "hipchat_token: ******"
+                    ]
+                }
+            ]
+        }
+    }
+}

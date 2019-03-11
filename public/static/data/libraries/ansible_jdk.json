@@ -1,0 +1,39 @@
+{
+    "Ansible": {
+        "Roles": {
+            "Tooling Installation": [
+                {
+                    "Solution": "Playbook",
+                    "Archetype": "Roles",
+                    "Name": "JDK",
+                    "Description": "JDK install role",
+                    "RoleName":"ansible-role-jdk-install",
+                    "Command": [
+                        "ansible-galaxy install -p roles -r requirements.yml"
+                    ],
+                    "GalaxyImport": [
+                        "- src: git+https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-jdk-install",
+                        "  version: master"
+                    ],
+                    "Stage": "Tooling Installation",
+                    "Minimum SolutionVersion": "2.4",
+                    "Version": "master",
+                    "Tags": "ansible, ansible-galaxy, jdk, ansible-roles", 
+                    "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-jdk-install.git",
+                    "Platform": "multi",
+                    "Dependencies": "",
+                    "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-jdk-install/blob/master/roles/jdk-install/defaults/main.yml",
+                    "Config":  "vars/main.yml",
+                    "VarContent":[
+                        "jdk_nexus_path: http://nexus.sandbox.extranet.group/nexus/content/repositories/binaries/jdk",
+                        "java_download_folder: /apps/tools",
+                        "java_versions:",
+                        "  jdk1.8.0_77:",
+                        "    version: 1.8.0_77",
+                        "    dist_file: jdk-8u77-linux-x64.tar.gz"
+                    ]
+                }
+            ]
+        }
+    }
+}

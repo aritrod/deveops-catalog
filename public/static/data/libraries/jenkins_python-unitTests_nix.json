@@ -1,0 +1,37 @@
+{
+  "Jenkins": {
+    "Python": {
+      "Install Dependencies": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Python",
+          "Name": "Unit Test",
+          "Description": "Ability to run python unit tests",
+          "Command": [
+          "container('python'){", 
+              "runUnitTest(archType: 'Python')",
+              "}"
+          ],
+          "Stage": "Unit Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Python, Unit Test, SharedLib",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/python-unitTests_nix",
+          "Platform": "multi",
+          "Dependencies": "python, unittest, pipelineplugin",
+          "Library": "python-unitTests_nix@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mm-ds-python-sample/tree/mukulUTSharedLib/pipelines/conf/python-unit-test_nix.yaml",
+          "Config": "pipelines/conf/python-unit-test_nix.yaml",
+          "imageList": [
+            "- name: python",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/python:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

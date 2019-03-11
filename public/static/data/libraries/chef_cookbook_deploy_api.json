@@ -1,0 +1,72 @@
+{
+    "Chef": {
+        "Cookbook": {
+            "JAVA API & CWA Deployment": [{
+                    "Solution": "Chef",
+                    "Archetype": "Cookbook",
+                    "Name": "lbg_deploy_api::deploy",
+                    "Description": "Cookbook to deploy java apis",
+                    "Command": [
+                        "recipe[lbg_deploy_api::deploy]"
+                    ],
+                    "default_attributes": [{
+                        "api_names": "api-1,api-2",
+                        "api_details": {
+                            "api-1": {
+                                "api_name": "api-1",
+                                "port": "",
+                                "version": "",
+                                "trust_store_path": "",
+                                "trust_store_password_path": "",
+                                "key_store_path": "",
+                                "key_store_password_path": "",
+                                "key_store_type": "",
+                                "kerberos_conf_path": "",
+                                "login_config_path": "",
+                                "artifact_id": "",
+                                "install_api": ""
+                            },
+                            "database": {
+                                "user": "",
+                                "password": ""
+                            }
+                        }
+
+                    }],
+                    "Stage": "JAVA API & CWA Deployment",
+                    "Minimum SolutionVersion": "1.0",
+                    "Version": "master",
+                    "Tags": "chef, cookbook, recipe, java-api, deploy-api",
+                    "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_deploy_api.git",
+                    "Platform": "multi",
+                    "Dependencies": "",
+                    "ConfigPath": "",
+                    "Config": "",
+                    "VarContent": []
+                },
+                {
+                    "Solution": "Chef",
+                    "Archetype": "Cookbook",
+                    "Name": "lbg_deploy_api::deploy_cwa",
+                    "Description": "Cookbook to deploy cwa code",
+                    "Command": [
+                        "recipe[lbg_deploy_api::deploy_cwa]"
+                    ],
+                    "default_attributes": [{
+
+                    }],
+                    "Stage": "JAVA API & CWA Deployment",
+                    "Minimum SolutionVersion": "1.0",
+                    "Version": "master",
+                    "Tags": "chef, cookbook, recipe, cwa, deploy-cwa",
+                    "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_deploy_api.git",
+                    "Platform": "multi",
+                    "Dependencies": "",
+                    "ConfigPath": "",
+                    "Config": "",
+                    "VarContent": []
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+  "Jenkins": {
+    "Java": {
+      "Deploy": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "BluemixDeploy",
+          "Description": "Deploying an App.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDeploy()",
+            "}"
+          ],
+          "Stage": "Deploy",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Deploy, App, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    },
+    "NodeJS": {
+      "Deploy": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "BluemixDeploy",
+          "Description": "Deploying an App.",
+          "Command": [
+            "container('cf-cli') {",
+            "  bluemixDeploy()",
+            "}"
+          ],
+          "Stage": "Deploy",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Deploy, App, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix",
+          "Platform": "nix",
+          "Dependencies": "cf-cli",
+          "Library": "bluemix-deploy_nix@master",
+          "Config": "pipelines/conf/bluemix-deploy_nix.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/bluemix-deploy_nix/blob/master/examples/pipelines/conf/bluemix-deploy_nix.yaml",
+          "imageList": [
+            "- name: cf-cli",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    }
+  }
+}

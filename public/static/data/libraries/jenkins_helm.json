@@ -1,0 +1,43 @@
+{
+    "Jenkins": {
+      "Java": {
+        "Deploy": [
+          {
+            "Solution": "Jenkins",
+            "Archetype": "Java",
+            "Name": "helm-charts_nix",
+            "Description": "Ability to use Helm cli commands as groovy methods",
+            "Command": [
+             "container('kube-tools')  {",
+                 "initHelm(phase: 'Init Helm Repo')",
+                 "lintChart(chartPath: '$PROJECT_NAME')",
+                 "repoAdd(repoName: 'harbor-charts', repoUrl: 'http://goharbor-sandbox.lbg.eu-gb.mybluemix.net/chartrepo/library', phase: 'Add helm repo')",
+                 "packageChart(chartName: '$PROJECT_NAME', version: '$VERSION')",
+                 "pushChart(chartName:'$PROJECT_NAME', repoName: 'harbor-charts', version: '$VERSION', credentialsId: 'harbor-creds')",
+                 "upgradeRelease(chartName: '$PROJECT_NAME', repoUrl: 'harbor-charts', releaseName: '$PROJECT_NAME', version: '${VERSION}', namespace: '${NAMESPACE}', credentialsId: 'harbor-creds' )",
+                 "testRelease(releaseName: '$PROJECT_NAME')",
+                 "statusRelease(flags: '', releaseName: '$PROJECT_NAME')",
+             "}"
+            ],
+            "Stage": "Deployment",
+            "Helm cli version": "v2.7.2",
+            "Version": "1.0",
+            "Tags": "Jenkins, Helm, Kubernetes, SharedLib",
+            "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/helm-charts_nix.git",
+            "Platform": "unixs",
+            "Dependencies": "kubernetes cluster and helm cli binary",
+            "Library": "helm-charts_nix@master",
+            "Config": "None",
+            "imageList": [
+              "- name: cf-cli",
+              "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/cf-cli:6.42.0",
+              "  imagePullPolicy: Always",
+              "  command:",
+              "    - cat",
+              "  tty: true"
+                ]
+          }
+       ]
+     }
+   }
+}

@@ -1,0 +1,37 @@
+{
+  "Jenkins": {
+    "NodeJS": {
+      "Build": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "NodeJS NPM Build",
+          "Description": "Creating an build archive for a NodeJS project using NPM scripts as build tool.",
+          "Command": [
+            "container('node6') {",
+            "  runNPMBuild",
+            "}"
+          ],
+          "Stage": "Build",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, NodeJS, NPM, Build, Unix_only",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/build-nodejs_nix",
+          "Platform": "nix",
+          "Dependencies": "workflowLibs",
+          "Library": "npm-bulid@master",
+          "Config": "pipelines/conf/build.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/build-nodejs_nix/blob/master/pipelines/conf/build.yaml",
+          "imageList": [
+            "- name: node6",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/node:6.10.2",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

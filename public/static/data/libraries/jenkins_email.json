@@ -1,0 +1,72 @@
+{
+  "Jenkins": {
+    "Java": {
+      "Reporting": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "e-mail",
+          "Description": "Notification library for e-mail",
+          "Command": [
+            "container('puppeteer'){",
+            "  blueOceanScreenShot()",
+            "}",
+            "emailNotify()"            
+          ],
+          "Stage": "Reporting",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Notification, SharedLib, Email",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/notifications_multi.git",
+          "Platform": "multi",
+          "Dependencies": "email-ext, blueocean",          
+          "Library": "notfications_multi@master",
+          "Config": "pipelines/conf/notifications.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/notifications.yaml",
+          "imageList": [
+            "- name: puppeteer",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/buildkite/puppeteer",
+            "  imagePullPolicy: IfNotPresent",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    },
+    "NodeJS": {
+      "Reporting": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "e-mail",
+          "Description": "Notification library for e-mail",
+          "Command": [
+            "container('puppeteer'){",
+            "  blueOceanScreenShot()",
+            "}",
+            "emailNotify()"            
+          ],
+          "Stage": "Reporting",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, NodeJS, Notification, e-mail",
+          "Github Repo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/notifications_multi.git",
+          "Platform": "multi",
+          "Dependencies": "email-ext, blueocean",          
+          "Library": "notfications_multi@master",
+          "Config": "pipelines/conf/notifications.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/notifications.yaml",
+          "imageList": [
+            "- name: puppeteer",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/tools/buildkite/puppeteer",
+            "  imagePullPolicy: IfNotPresent",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+          ]
+        }
+      ]
+    }
+  }
+}

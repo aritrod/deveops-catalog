@@ -1,0 +1,78 @@
+{
+
+    "Chef": {
+        "Cookbook": {
+            "NGINX Installation": [{
+                "Solution": "Chef",
+                "Archetype": "Cookbook",
+                "Name": "lbg_nginx",
+                "Description": "Cookbook to install nginx for cwa",
+                "Command": [
+                    "recipe[lbg_nginx]"
+                ],
+                "default_attributes": [{
+                    "lbg_server_details_app_tier": "",
+                    "support_user": "",
+                    "application_user": "",
+                    "application_group": "",
+                    "java_opts": "-Xmx256m -Xms128m",
+                    "nexus_base_url": "",
+                    "nexus_repo": "",
+                    "cwa_nexus_repo": "",
+                    "modelmaker_home": "",
+                    "cwa_home": "",
+                    "certpath": "",
+                    "cert_names": [],
+                    "api_names": "api-1,api-2",
+                    "api_details": {
+                        "api-1": {
+                            "api_name": "api-1",
+                            "location_context": "",
+                            "proxy_context": "",
+                            "proxy_ssl_verify": "",
+                            "port": "",
+                            "version": "",
+                            "proxy_trust_cert_name": "",
+                            "servers": [],
+                            "nginx_masters": []
+                        }
+                    },
+                    "lbg_nginx": {
+                        "masters": [],
+                        "load_balancer_ip": "",
+                        "audit": {
+                            "https_port": "",
+                            "cwa_home": "",
+                            "cwa_version": "",
+                            "log_dir": "",
+                            "nexus_repo": "",
+                            "package_prefix": "",
+                            "cwa": ""
+                        },
+                        "config_home": "/etc/nginx",
+                        "application_site_enabled": "true",
+                        "https_port": 443,
+                        "http_port": 80,
+                        "ssl_enabled": "",
+                        "re_install": ""
+                    },
+                    "http_headers": {
+                        "X-Frame-Options": "DENY",
+                        "X-XSS-Protection": "1",
+                        "X-Content-Type-Options": "nosniff"
+                    }
+                }],
+                "Stage": "NGINX Installation",
+                "Minimum SolutionVersion": "1.0",
+                "Version": "master",
+                "Tags": "chef, cookbook, recipe, nginx, proxy, cwa",
+                "Github Repo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/chef_cookbook_lbg_nginx.git",
+                "Platform": "multi",
+                "Dependencies": "",
+                "ConfigPath": "",
+                "Config": "",
+                "VarContent": []
+            }]
+        }
+    }
+}

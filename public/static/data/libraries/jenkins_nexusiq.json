@@ -1,0 +1,70 @@
+{
+  "Jenkins": {
+    "Java": {
+      "NexusIQ": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "NexusIQ",
+          "Description": "Sonatype nexusIQ is a service for security scans of dependencies and packages",
+          "Command": [
+            "container('java-build-tools') {",
+            "  runNexusIQ()",
+            "}"
+          ],
+          "Stage": "Functional Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, SharedLib, NexusIQ",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi",
+          "Platform": "multi",
+          "Dependencies": "java",
+          "Library": "nexusiq_multi@master",
+          "Config": "pipelines/conf/nexusIQ_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi/blob/master/pipelines/conf/nexusIQ_multi.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    },
+    "NodeJS": {
+      "NexusIQ": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "NodeJS",
+          "Name": "NexusIQ",
+          "Description": "Sonatype nexusIQ is a service for security scans of dependencies and packages",
+          "Command": [
+            "container('java-build-tools') {",
+            "  runNexusIQ()",
+            "}"
+          ],
+          "Stage": "NexusIQ",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, SharedLib, NexusIQ",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi",
+          "Platform": "multi",
+          "Dependencies": "java",
+          "Library": "nexusiq_multi@master",
+          "Config": "pipelines/conf/nexusIQ_multi.yaml",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/nexusiq_multi/blob/master/pipelines/conf/nexusIQ_multi.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: goharbor-sandbox.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "Jenkins": {
+    "Java": {
+      "Unit Test": [
+        {
+          "Solution": "Jenkins",
+          "Archetype": "Java",
+          "Name": "UnitTest",
+          "Description": "Ability to run Unit Tests",
+          "Command": [
+          "container('java-build-tools'){", 
+              "runUnitTest(archType: 'Java', buildTool: 'maven')",
+              "}"
+          ],
+          "Stage": "Unit Test",
+          "Minimum SolutionVersion": "2.12",
+          "Version": "1.0",
+          "Tags": "Jenkins, Java, Maven, SharedLib, UnitTest",
+          "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/java-maven-unitTests_multi",
+          "Platform": "multi",
+          "Dependencies": "java, maven, pipelineplugin",
+          "Library": "java-maven-unitTests_multi@master",
+          "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/mpa-payment-submission-api/blob/master/pipelines/conf/java-maven-unit-test_nix.yaml",
+          "Config": "pipelines/conf/java-maven-unit-test_nix.yaml",
+          "imageList": [
+            "- name: java-build-tools",
+            "  image: registry-proxy.lbg.eu-gb.mybluemix.net/java-build-tools:latest",
+            "  imagePullPolicy: Always",
+            "  command:",
+            "    - cat",
+            "  tty: true"
+              ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "Ansible": {
+        "Roles": {
+            "Tooling Installation": [
+                {
+                    "Solution": "Playbook",
+                    "Archetype": "Roles",
+                    "Name": "NodeJS",
+                    "Description": "NodeJS install role",
+                    "RoleName":"ansible-role-nodejs-install",
+                    "Command": [
+                        "ansible-galaxy install -p roles -r requirements.yml"
+                    ],
+                    "GalaxyImport": [
+                        "- src: git+https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-nodejs-install",
+                        "  version: master"
+                    ],
+                    "Stage": "Tooling Installation",
+                    "Minimum SolutionVersion": "2.4",
+                    "Version": "master",
+                    "Tags": "ansible, ansible-galaxy, node, ansible-roles", 
+                    "GithubRepo": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-nodejs-install.git",
+                    "Platform": "multi",
+                    "Dependencies": "",
+                    "ConfigPath": "https://github.lbg.eu-gb.bluemix.net/Configuration-Management/ansible-role-nodejs-install/blob/master/roles/ansible-role-nodejs-install/defaults/main.yml",
+                    "Config":  "vars/main.yml",
+                    "VarContent":[
+                        "nexus_url: http://nexus.sandbox.extranet.group/nexus/content/repositories",
+                        "node_destination_dir: /opt/node",
+                        "node_version: 8.11.4"
+                    ]
+                }
+            ]
+        }
+    }
+}

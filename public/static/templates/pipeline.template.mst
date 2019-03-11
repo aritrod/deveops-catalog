@@ -1,0 +1,82 @@
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#libraries}}
+library identifier: '{{& identifier}}', retriever: modernSCM([$class: 'GitSCMSource',
+        remote: '{{& remote}}',
+        credentialsId: 'jenkinsGHEPAT'])
+{{/libraries}}
+{{/isStageVisible}}
+{{/selectedItems}}
+
+{{#selectedItems}}
+{{#isStageVisible}}
+{{#globals}}
+{{& .}}
+{{/globals}}
+{{/isStageVisible}}
+{{/selectedItems}}
+pipeline {
+  agent {
+    kubernetes {
+      label "label-${UUID.randomUUID().toString()}"
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    jenkins: jenkins-pipeline
+spec:
+  securityContext:
+    runAsUser: 10000
+  containers:
+    - name: jnlp
+      image: registry-proxy.lbg.eu-gb.mybluemix.net/mm-mlp/jnlp-slave:3.23-1-alpine
+      ttyEnabled: true
+  {{#selectedItems}}
+  {{#isStageVisible}}
+  {{#imageList}}
+    {{& .}}
+  {{/imageList}}
+  {{/isStageVisible}}
+  {{/selectedItems}}
+"""
+    }
+  }
+
+  environment {
+      {{#selectedItems}}
+      {{#isStageVisible}}
+      {{#environments}}
+      {{& .}}
+      {{/environments}}
+      {{/isStageVisible}}
+      {{/selectedItems}}
+  }
+
+  stages {
+	{{#selectedItems}}
+        {{#isStageVisible}}
+        stage('{{& name}}') {
+            {{#agent}}
+            agent { label '{{.}}'}
+
+            {{/agent}}
+            steps {
+                script {
+                    {{#commands}}
+                    {{& .}}
+                    {{/commands}}
+                }
+            }
+        }
+        {{/isStageVisible}}
+	{{/selectedItems}}
+  }
+
+  post {
+    always {
+        echo "Cleanup Workspace."
+        step([$class: 'WsCleanup'])
+    }
+  }
+ }
