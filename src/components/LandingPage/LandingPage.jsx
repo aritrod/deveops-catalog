@@ -1,112 +1,68 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import Header from "../Header";
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import {
-  withStyles,
-  MuiThemeProvider
-} from "@material-ui/core";
-import styles from "./LandingPage.styles";
-import App from "../App";
+import { Link } from 'react-router-dom'
 
-const ITEM_HEIGHT = 48;
-
-const gitHubList = [
-  'OAuth',
-  'Onboarding',
-  'Teams and Controls',
-  'Clearcase Migration'
-];
-
-const containerList = [
-  'Self Service',
-  'Onboarding',
-  'Developer tooling catalog',
-  'K8s/Rancher'
-];
+const styles = {
+  card: {
+    minWidth: 50,
+    maxWidth: 300,
+    marginLeft: '5%',
+    marginTop: '2%'
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
 
 class LandingPage extends Component {
-  state = {
-    anchorEl: null,
-    showCatalog: false
-  };
-
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null , showCatalog: true});
-  };
 
   render() {
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+    const { classes } = this.props;
 
     return (
       <div>
         <Header />
-        <IconButton
-          aria-label="More"
-          aria-owns={open ? 'long-menu1' : undefined}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          Github
-        </IconButton>
-        <Menu
-          id="long-menu1"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={this.handleClose}
-          PaperProps={{
-            style: {
-              maxHeight: ITEM_HEIGHT * 4.5,
-              width: 200,
-            },
-          }}
-        >
-          {gitHubList.map(option => (
-            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
-              {option}
-            </MenuItem>
-          ))}
-        </Menu>
+        <div style={{ textAlign: "center", margin: "1%" }}><h5>One place to run deploy and test your application</h5></div>
+        <div>
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>
+                Deploy your application using best practice and patterns
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small"><Link to='/quickStart'>Quick Start</Link></Button>
+            </CardActions>
+          </Card>
 
-        <IconButton
-          aria-label="More"
-          aria-owns={open ? 'long-menu2' : undefined}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          Container
-        </IconButton>
-        <Menu
-          id="long-menu2"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={this.handleClose}
-          PaperProps={{
-            style: {
-              maxHeight: ITEM_HEIGHT * 4.5,
-              width: 200,
-            },
-          }}
-        >
-          {containerList.map(option => (
-            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
-              {option}
-            </MenuItem>
-          ))}
-        </Menu>
-        <br></br>
-        {this.state.showCatalog ? (
-        <App/> ): (
-          <span>No catalog selected</span>
-        )}
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>
+                Using existing patterns : Github, Jenkins, Chef, Ansible
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small"><Link to='/practitioner'>Practitioner</Link></Button>
+            </CardActions>
+          </Card>
+        </div>
+        <div style={{ textAlign: "center", margin: "1%" }}><a href="https://www.google.com/" target="blank"> Prerequisites</a>
+          <p class="fa fa-question-circle"></p>
+        </div>
       </div>
     );
   }

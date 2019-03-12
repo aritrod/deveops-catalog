@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/App";
-import LandingPage from "./components/LandingPage";
+import Main from "./components/Main";
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM.render(<LandingPage />, document.getElementById("root"));
+ReactDOM.render(<BrowserRouter><Main/></BrowserRouter>, document.getElementById("root"));
