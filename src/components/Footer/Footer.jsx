@@ -11,6 +11,8 @@ function Footer(props) {
     <div className={classes.footerPos}>
       <div style={{ borderTop: "1px solid lightgrey", margin: "1%" }}>
         <div className="row col-md-12" style={{ margin: "1%" }}>
+        <div className="col-md-1"></div>
+        <div className="col-md-1"></div>
           <img
           className="col-md-1"
             src="./static/images/cloud_infra.png"

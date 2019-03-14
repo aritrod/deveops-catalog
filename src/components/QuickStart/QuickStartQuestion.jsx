@@ -99,11 +99,12 @@ class QuickStartQuestion extends Component {
                                     <label style={{ marginTop: "1%" }}>Email id (requestor)</label>
                                     <input onChange={this.onChangeEmail} value={this.state.email} type="text" className="form-control" id="email" placeholder="Please add your organization email" />
                                     <label style={{ marginTop: "1%" }}>Select tooling</label><br></br>
-                                    <input type="checkbox" name="vehicle1" value="1"/> Jenkins<br></br>
-                                    <input type="checkbox" name="vehicle2" value="2"/> Nexus<br></br>
-                                    <input type="checkbox" name="vehicle3" value="3" disabled/> Sonar<br></br>
-                                    <input type="checkbox" name="vehicle3" value="4" disabled/> Chef<br></br>
-                                    <input type="checkbox" name="vehicle3" value="5" disabled/> Monitoring<br></br>
+                                    <input type="checkbox" name="jenkins" value="1"/> Jenkins<br></br>
+                                    <input type="checkbox" name="nexus" value="2"/> Nexus<br></br>
+                                    <input type="checkbox" name="docker" value="2"/> Docker<br></br>
+                                    <input type="checkbox" name="sonar" value="3" disabled/> Sonar<br></br>
+                                    <input type="checkbox" name="chef" value="4" disabled/> Chef<br></br>
+                                    <input type="checkbox" name="monitoring" value="5" disabled/> Monitoring<br></br>
                                     <div style={{ marginTop: "1%" }}>
                                     <Link to='/summary'>Submit</Link>
                                     </div>

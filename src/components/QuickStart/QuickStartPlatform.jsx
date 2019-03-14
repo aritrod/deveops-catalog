@@ -7,6 +7,12 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -34,21 +40,50 @@ const styles = {
 };
 
 class QuickStartPlatform extends Component {
-    constructor() {
-        super()
-        this.state = {
+    state = {
+        showLandscapeModal: false
+    };
 
-        }
+    handleCardActionClick = () => {
+        this.setState({ showLandscapeModal: true });
     }
+
+    handleClose = () => {
+        this.setState({ showLandscapeModal: false });
+    };
 
     render() {
         const { classes } = this.props;
+        const { showLandscapeModal } = this.state;
         return (
             <div> <Header />
+                <Dialog
+                    open={showLandscapeModal}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">{"ALF on Azure Platform"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Below is the available landscape you can get as part of this platform
+                        </DialogContentText><br></br>
+                        <img
+                            src="./static/images/landscape.png"
+                            alt="ALF Azure landscape"
+                            height="200" width="400"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary" >
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
                 <div style={{ textAlign: "center", margin: "1%" }}><h5>Available Platforms</h5></div>
                 <div className="row">
                     <div className="col-md-3">
                         <Card className={classes.card}>
+                        <CardActionArea onClick={this.handleCardActionClick}>
                             <CardMedia
                                 className={classes.media}
                                 image="./static/images/azureNew.jpeg"
@@ -64,6 +99,7 @@ class QuickStartPlatform extends Component {
                                     Extend Azure on-premises with Azure Stack.
                                             </Typography>
                             </CardContent>
+                            </CardActionArea>
                             <CardActions>
                                 <Button size="small"><Link to='/quickStartQuestion'>Select</Link></Button>
                             </CardActions>
@@ -92,6 +128,7 @@ class QuickStartPlatform extends Component {
                     </div>
                     <div className="col-md-3">
                         <Card className={classes.card}>
+                        
                             <CardMedia
                                 className={classes.media}
                                 image="./static/images/k8_azure.png"
@@ -102,6 +139,7 @@ class QuickStartPlatform extends Component {
                                     kubernetes Azure Stack
                                             </Typography>
                             </CardContent>
+                            
                             <CardActions>
                                 <Button size="small"><Link to='/quickStartQuestion'>Select</Link></Button>
                             </CardActions>

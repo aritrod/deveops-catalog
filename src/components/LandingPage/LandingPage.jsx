@@ -47,7 +47,7 @@ class LandingPage extends Component {
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
-                image="./static/images/quickstart.jpeg"
+                image="./static/images/launchpad.jpeg"
                 title="kubernetes_azure"
               />
               <CardContent>
@@ -64,7 +64,7 @@ class LandingPage extends Component {
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
-                image="./static/images/devopsNew.jpeg"
+                image="./static/images/devopsone.jpeg"
                 title="kubernetes_azure"
               />
               <CardContent>
