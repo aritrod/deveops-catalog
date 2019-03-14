@@ -106,7 +106,7 @@ class QuickStartQuestion extends Component {
                                     <input type="checkbox" name="chef" value="4" disabled/> Chef<br></br>
                                     <input type="checkbox" name="monitoring" value="5" disabled/> Monitoring<br></br>
                                     <div style={{ marginTop: "1%" }}>
-                                    <Link to='/summary'>Submit</Link>
+                                    <Link to='/quickStartSummary'>Submit</Link>
                                     </div>
                                 </div>
                             </div>

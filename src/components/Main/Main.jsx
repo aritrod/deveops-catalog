@@ -4,6 +4,7 @@ import LandingPage from '../LandingPage'
 import QuickStartQuestion from '../QuickStart/QuickStartQuestion'
 import QuickStartSummary from '../QuickStart/QuickStartSummary'
 import QuickStartPlatform from '../QuickStart/QuickStartPlatform'
+import QuickStartConclusion from '../QuickStart/QuickStartConclusion'
 import App from '../App'
 
 const Main = () => (
@@ -13,8 +14,11 @@ const Main = () => (
       <Route exact path='/landing' component={LandingPage}/>
       <Route path='/quickStartQuestion' component={QuickStartQuestion}/>
       <Route path='/quickStartPlatform' component={QuickStartPlatform}/>
+      <Route path='/quickStartConclusion' component={QuickStartConclusion}/>
+      <Route path='/quickStartSummary' component={QuickStartSummary}/>
       <Route path='/practitioner' component={App}/>
-      <Route path='/summary' component={QuickStartSummary}/>
+      
+      
     </Switch>
   </main>
 )

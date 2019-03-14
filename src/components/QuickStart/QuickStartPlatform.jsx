@@ -102,10 +102,17 @@ class QuickStartPlatform extends Component {
                             </CardActionArea>
                             <CardActions>
                                 <Button size="small"><Link to='/quickStartQuestion'>Select</Link></Button>
+                                <a href="https://azure.microsoft.com/en-gb/overview/what-is-azure/" target='blank'
+                                style={{marginLeft: "23%" }}>
+                                <img
+                                    src="./static/images/rating2.jpeg"
+                                    alt="rating"
+                                    height="25" width="140"
+                                /></a>
                             </CardActions>
                         </Card>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3" style={{ opacity: '.4' }}>
                         <Card className={classes.card}>
                             <CardMedia
                                 className={classes.media}
@@ -122,11 +129,11 @@ class QuickStartPlatform extends Component {
                                             </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small"><Link to='/quickStartQuestion'>Select</Link></Button>
+                                <Button size="small" disabled><Link to='/quickStartQuestion'>Select</Link></Button>
                             </CardActions>
                         </Card>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3" style={{ opacity: '.4' }}>
                         <Card className={classes.card}>
                         
                             <CardMedia
@@ -141,11 +148,11 @@ class QuickStartPlatform extends Component {
                             </CardContent>
                             
                             <CardActions>
-                                <Button size="small"><Link to='/quickStartQuestion'>Select</Link></Button>
+                                <Button size="small" disabled><Link to='/quickStartQuestion'>Select</Link></Button>
                             </CardActions>
                         </Card>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3" style={{ opacity: '.4' }}>
                         <Card className={classes.card}>
                         <CardMedia
                                 className={classes.media}
@@ -158,7 +165,7 @@ class QuickStartPlatform extends Component {
                                             </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small"><Link to='/quickStartQuestion'>Select</Link></Button>
+                                <Button size="small" disabled><Link to='/quickStartQuestion' >Select</Link></Button>
                             </CardActions>
                         </Card>
                     </div>

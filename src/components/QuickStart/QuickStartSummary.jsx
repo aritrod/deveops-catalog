@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from "../Header";
-import CostingBenefit from '../QuickStart/CostingBenefit'
+import QuickStartCosting from '../QuickStart/QuickStartCosting'
 
 class QuickStartSummary extends Component {
     state = {
@@ -11,11 +11,10 @@ class QuickStartSummary extends Component {
         return (
             <div> <Header />
                 <div style={{ textAlign: "center", margin: "1%" }}>
-                    <p class="fa fa-rocket"></p>
-                    <span>Based on your selection below is the recommended landscape and cost benefits for you</span>
+                    <h5>Based on your selection below is the recommended landscape and cost benefits for you</h5>
                 </div><br></br>
                 <div>
-                    <CostingBenefit />
+                    <QuickStartCosting />
                 </div>
             </div>
         );

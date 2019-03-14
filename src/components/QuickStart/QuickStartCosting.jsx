@@ -65,7 +65,7 @@ const clusterSizes = [
   },
 ];
 
-class CostingBenefit extends Component {
+class QuickStartCosting extends Component {
   state = {
     platform: 'ALF on Azure',
     project: 'Horizontal Scaling',
@@ -177,7 +177,7 @@ class CostingBenefit extends Component {
             </CardContent>
 
             <CardActions>
-              <Button size="small" style={{ textAlign: "center" }}><Link to='/'>Accept</Link></Button>
+              <Button size="small" style={{ textAlign: "center" }}><Link to='/quickStartConclusion'>Accept</Link></Button>
             </CardActions>
           </Card>
         </div>
@@ -196,7 +196,7 @@ class CostingBenefit extends Component {
             </CardContent>
 
             <CardActions>
-              <Button size="small" style={{ textAlign: "center" }}><Link to='/'>Accept</Link></Button>
+              <Button size="small" style={{ textAlign: "center" }}><Link to='/quickStartConclusion'>Accept</Link></Button>
             </CardActions>
           </Card>
         </div>
@@ -215,7 +215,7 @@ class CostingBenefit extends Component {
             </CardContent>
 
             <CardActions>
-              <Button size="small" style={{ textAlign: "center" }}><Link to='/'>Accept</Link></Button>
+              <Button size="small" style={{ textAlign: "center" }}><Link to='/quickStartConclusion'>Accept</Link></Button>
             </CardActions>
           </Card>
         </div>
@@ -226,8 +226,8 @@ class CostingBenefit extends Component {
   }
 }
 
-CostingBenefit.propTypes = {
+QuickStartCosting.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CostingBenefit);
+export default withStyles(styles)(QuickStartCosting);
