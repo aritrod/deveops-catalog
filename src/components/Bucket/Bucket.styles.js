@@ -17,6 +17,6 @@ export default theme => ({
     backgroundColor: "lightgrey"
   },
   subHeading: {
-    color: "#4A9FF9"
+    color: "#00864f"
   }
 });

@@ -16,7 +16,11 @@ export default theme => ({
     "border-radius": "5px 5px 0px 0px",
     "text-align": "center",
     "color": "#fff",
-    "background": "#2ac06d"
+    "background-size": "100%",
+    "background-image": "-webkit-gradient(linear,0 50%,100% 50%,color-stop(0%,#007c43),color-stop(100%,#63b44f))",
+    "background-image": "-webkit-linear-gradient(left,#007c43 0,#63b44f 100%)",
+    "background-image": "linear-gradient(to right,#007c43 0,#63b44f 100%)",
+    "filter": "progid:DXImageTransform.Microsoft.gradient(startColorstr='#007c43', endColorstr='#63b44f', GradientType=1)"
   },
   subHeading: {
     fontSize: "24px",

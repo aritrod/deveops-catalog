@@ -13,9 +13,10 @@ export const stages = [
   "Tooling Installation",
   "Notification & collaboration",
   "Chef Roles",
-  "Cookbook_lbg_nginx",
-  "Cookbook_lbg_openJDK",
+  "NGINX Installation",
   "Cookbook_lbg_deploy_api",
+  "JAVA API & CWA Deployment",
+  "openJDK Installation",
   "UCD CI IBM APIC",
   "Cleanup"
 ]

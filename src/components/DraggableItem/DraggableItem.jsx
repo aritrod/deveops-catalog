@@ -11,7 +11,7 @@ import { Draggable } from "react-beautiful-dnd";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import HelpIcon from "@material-ui/icons/Help";
+import InfoIcon from "@material-ui/icons/Info";
 import classnames from "classnames";
 
 import styles from "./DraggableItem.styles";
@@ -69,7 +69,7 @@ class DraggableItem extends React.Component {
               title="Click to read the help document of this component"
               target="_blank"
               rel="noopener noreferrer">
-                <HelpIcon/>
+                <InfoIcon/>
             </IconButton>
 
             {showDeleteButton ? (
@@ -87,7 +87,7 @@ class DraggableItem extends React.Component {
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           {<ul className={classes.imageList}>
           {item.Description ? <li>Description - {item.Description}<br/><br/></li>: null}
-          {item.imageList ? <li>Container(s)used -</li> : null}
+          {item.imageList ? <li><b>Container(s) Details -</b></li> : null}
           {(item.imageList) ? (item.imageList.map((data, index) => (
                   <li className={classes.solType} key={index} >{data}</li>
                 ))) : null}

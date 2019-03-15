@@ -3,6 +3,9 @@ export default theme => ({
     padding: theme.spacing.unit * 2
   },
   solType:{
-    "font-size": "20px"
+    "font-size": "20px",
+    "&:focus":{
+      "outline": "none"
+    }
   }
 });

@@ -12,7 +12,8 @@ export default theme => ({
   imageList: {
     "font-size":"10px",
     "list-style": "none",
-    "padding": "10px"
+    "padding": "10px",
+    "white-space":"pre-wrap"
   },
   hide: {
     "display": "none"

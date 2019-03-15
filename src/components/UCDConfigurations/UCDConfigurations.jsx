@@ -42,25 +42,33 @@ class UCDConfigurations extends React.Component {
     var blob = new Blob([content]);
     saveAs(blob, filename);
   };
-  actionBtnHandler = (type,action,data, e)=>
-  {
-    switch (type) {
-      case "ucd_ci": 
-      return action==="preview" ? this.setState({previewClick: true}): this.download(this.ucdCIRef.innerText, "ucd_ci.yaml");
-      case "jenkins": 
+  onSubmit(event){
+    debugger;
+    event.preventDefault();
+    let action = document.activeElement.textContent;
+    let states =store.getState().toJS();
+    switch (action) {
+      case "Preview UCD_CI.YAML": 
+      case "Refresh UCD_CI.YAML": 
+      return this.setState({previewClick: true})
+      case "Download ucd_ci.yaml": 
+      return  this.download(this.ucdCIRef.innerText, "ucd_ci.yaml");;
+      case "Download Jenkins File": 
       return  this.download(Mustache.render(this.props.UCDJenkins), "Jenkinsfile");
-      case "processJson": 
+      case "Download Process.Json": 
       return  this.download(Mustache.render(this.props.UCDProcessTemplate,{
         "selectedItems": {
-          ...data
+          appName: states && states.app_Name,
+          componentName: states && states.components[0].name
         },
         "isStageVisible": true
       }), "process.json");
       default:
       return  console.log("no file to Download");
     }
-  }
 
+  }
+  
   handleClickOpen = (section) => {
     if(section === "components"){
       this.setState({
@@ -78,11 +86,12 @@ class UCDConfigurations extends React.Component {
     this.setState({ selectedValue: value, Dialog_Comp_Open: false, Dialog_Env_Open: false });
   };
 
-  handleDialogDone = (value, section) => {
+  handleDialogDone = (details) => {
+    let {properties, section} = details
     this.updateStoreValue({
       type: 'ADD_REMOVE_PROPERTIES',
       payload: {
-        value, 
+        properties, 
         section,
         action: "add"
       }
@@ -182,7 +191,7 @@ createTextBoxs(obj, classes){
     } = this.props;
     let states = store.getState().toJS();
     return (
-<form name= "ucdForm" className={classes.formControl}>
+<form name= "ucdForm" className={classes.formControl} onSubmit={this.onSubmit.bind(this)}>
     <Grid container spacing={24}>
             <Grid item xs={6}>
                 <Grid item xs={12}>
@@ -215,7 +224,7 @@ createTextBoxs(obj, classes){
                                 <AddIcon />
                             </Button>
                         </Tooltip>}
-                        <DialogBox open={this.state.Dialog_Env_Open} onClose={this.handleDialogClose} onDone={this.handleDialogDone}
+                        <DialogBox viewtype="property" open={this.state.Dialog_Env_Open} onClose={this.handleDialogClose} onDone={this.handleDialogDone}
                             title='Add Properites' sectiontype="environments" />
                     </h2>
                     <Collapse className={classes.collapseWrapper} in={this.state.activePanel==="envDetails"} timeout="auto" unmountOnExit>
@@ -250,7 +259,7 @@ createTextBoxs(obj, classes){
                                 <AddIcon />
                             </Button>
                         </Tooltip>}
-                        <DialogBox open={this.state.Dialog_Comp_Open} onClose={this.handleDialogClose} onDone={this.handleDialogDone}
+                        <DialogBox viewtype="property" open={this.state.Dialog_Comp_Open} onClose={this.handleDialogClose} onDone={this.handleDialogDone}
                             title='Add Properites' sectiontype="components" />
                     </h2>
                     <Collapse className={classes.collapseWrapper} in={this.state.activePanel==="compDetails"} timeout="auto" unmountOnExit>
@@ -289,28 +298,31 @@ createTextBoxs(obj, classes){
                 </Grid>
             </Grid>
   </Grid>
-  {Object.keys(selectedItems).length > 0  &&
+  {selectedItems.Default && selectedItems.Default.length > 0  &&
     <Grid container spacing={24}>
     <Grid item xs={6} className={classes.buttonHolder}>
-    <Button variant="contained" color="primary" className={classes.btnSubmit}
-    onClick={this.actionBtnHandler.bind(this,'ucd_ci','preview', null)}>
+    <Button type="submit" value = "preview ucd_ci" variant="contained" color="primary" className={classes.btnSubmit}>
+    {/* onClick={this.actionBtnHandler.bind(this,'ucd_ci','preview', null)} */}
         {this.state.previewClick ? "Refresh UCD_CI.YAML" : "Preview UCD_CI.YAML"}
     </Button>
-    <Button variant="contained" color="primary" className={classes.btnSubmit}
+    <Button type="submit" value = "download ucd_ci" variant="contained" color="primary" className={classes.btnSubmit}
     disabled = {!this.state.previewClick}
-    onClick={this.actionBtnHandler.bind(this,'ucd_ci','download', null)}>
+    // onClick={this.actionBtnHandler.bind(this,'ucd_ci','download', null)}
+    >
         Download ucd_ci.yaml
     </Button>
     </Grid>
     <Grid item xs={6} className={classes.buttonHolder}>
-    <Button variant="contained" color="primary" className={classes.btnSubmit}
+    <Button type="submit" value = "download jenkins file" variant="contained" color="primary" className={classes.btnSubmit}
     disabled = {!this.state.previewClick}
-    onClick={this.actionBtnHandler.bind(this,'jenkins','download',null)}>
+    // onClick={this.actionBtnHandler.bind(this,'jenkins','download',null)}
+    >
         Download Jenkins File
     </Button>
-    <Button variant="contained" color="primary" className={classes.btnSubmit}
+    <Button type="submit" value = "download process.json" variant="contained" color="primary" className={classes.btnSubmit}
     disabled = {!this.state.previewClick}
-    onClick={this.actionBtnHandler.bind(this,'processJson','download',{appName: states.app_Name,componentName: states.components[0].name})}>
+    // onClick={this.actionBtnHandler.bind(this,'processJson','download',{appName: states.app_Name,componentName: states.components[0].name})}
+    >
         Download Process.Json
     </Button>
     </Grid>
@@ -348,7 +360,7 @@ createTextBoxs(obj, classes){
                           )
                         }
                       }),
-                      envDetails: states.environments.map((env,index)=> `${env.name}: ${env['templateName']}`),
+                      envDetails: states.environments.map((env,index)=> `${env.name}: ${env['templateUsed']}`),
                       addEnvAgents: states.environments.map((env,index)=> `${env.name}: ${env['agent']}`),
                       resourceProperties: states.environments.map((env,index)=> {
                         let envDetails = {};

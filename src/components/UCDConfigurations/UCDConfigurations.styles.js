@@ -8,23 +8,31 @@ export default theme => ({
     "border-radius": "5px"
   },
   heading: {
-    "height": "50px;",
+    "height": "50px",
     marginBottom:"0px",
-    "text-align": "left;",
-    "background": "#2ac06d;",
-    "font-weight": "bold;",
-    "border-radius": "5px 5px 0px 0px;"
+    "text-align": "left",
+    "background-size": "100%",
+    "background-image": "-webkit-gradient(linear,0 50%,100% 50%,color-stop(0%,#007c43),color-stop(100%,#63b44f))",
+    "background-image": "-webkit-linear-gradient(left,#007c43 0,#63b44f 100%)",
+    "background-image": "linear-gradient(to right,#007c43 0,#63b44f 100%)",
+    "filter": "progid:DXImageTransform.Microsoft.gradient(startColorstr='#007c43', endColorstr='#63b44f', GradientType=1)",
+    "font-weight": "bold",
+    "border-radius": "5px 5px 0px 0px"
   },
   toggleButton:{
-    "color":" #fff;",
+    "color":" #fff",
     "height":"100%",
     "min-width": "80%",
-    "font-size":" 17px;",
-    "margin-left":" 15px;",
-    "text-align":" center;",
-    "background":" #2ac05a;",
-    "font-weight":" bold;",
-    "padding":" 10px 0px;",
+    "font-size":" 17px",
+    "margin-left":" 15px",
+    "text-align":" center",
+    "background-size": "100%",
+    "background-image": "-webkit-gradient(linear,0 50%,100% 50%,color-stop(0%,#007c43),color-stop(100%,#63b44f))",
+    "background-image": "-webkit-linear-gradient(left,#007c43 0,#63b44f 100%)",
+    "background-image": "linear-gradient(to right,#007c43 0,#63b44f 100%)",
+    "filter": "progid:DXImageTransform.Microsoft.gradient(startColorstr='#007c43', endColorstr='#63b44f', GradientType=1)",
+    "font-weight":" bold",
+    "padding":" 10px 0px",
     "& svg":{
       marginLeft: "25px"
     }
@@ -78,7 +86,8 @@ export default theme => ({
     "width":"100%",
     "& > div" :{
       "border-bottom": "solid 2px green",
-      "margin-bottom": "30px"
+      "margin-bottom": "30px",
+      "margin-top": "5px"
     }
   },
   'multiFormControl':{
@@ -104,13 +113,13 @@ export default theme => ({
     }
   },
   "btnAddProp": {
-    "float":" right;",
-    "height":" 32px;",
-    "border":" solid 1px rgba(0, 106, 77, 0.5);",
-    "padding":" 2px;",
-    "margin":" 10px;",
-    "width":" 10px;",
-    "min-width":" 28px;"
+    "float":" right",
+    "height":" 32px",
+    "border":" solid 1px rgba(0, 106, 77, 0.5)",
+    "padding":" 2px",
+    "margin":" 10px",
+    "width":" 10px",
+    "min-width":" 28px"
   },
   'radio': {
     marginLeft: theme.spacing.unit,
