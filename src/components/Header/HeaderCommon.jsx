@@ -1,12 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./Header.styles";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
+import DialogBox from '../Dialog';
+import { createIssue } from "../../utils/service.js";
+import { configs } from "../../configuration.js";
 
-function HeaderCommon(props) {
-    const { classes } = props;
+class HeaderCommon extends Component 
+{
+    state = {
+        selectedHelpOption: '',
+        issueDialogOpen: false,
+        issuestatus: null,
+        isprocessing: false
+      };
+      handleDialogClose = value => {
+        this.setState({issueDialogOpen: false});
+      };
+      openDialog = () => {
+          this.setState({"issueDialogOpen" : true})
+      }
+      handleDialogDone = (issueDetails)=> {
+        let that = this;
+        this.setState({isprocessing: true})
+        createIssue(configs.githubIssueAPI, {method: "POST", data: issueDetails, token:configs.authToken}).then((data)=>{
+          that.setState({issuestatus: "created", isprocessing: false});
+        }, (err)=> {
+          that.setState({issuestatus: "error", isprocessing: false});
+        })
+      }
+    render()
+    {
+    const { classes } = this.props;
     return (
         <div className={classnames('row', 'col-sm-12', classes.headerCommon)}>
             <div className={classnames('col-sm-2')}>
@@ -18,19 +45,20 @@ function HeaderCommon(props) {
             </div>
             <div className={classnames('col-sm-2', classes.headerCommonWrapper)}>
                 <p className={classes.headerCommonTitle}>DevOps Commons</p>
-                <div className={classes.headerDivider}></div>
             </div>
-            <div class="col-sm-4"></div>
-            <div className={classnames('col-sm-1', classes.headerCommonWrapper)}>
-                <p className={classes.headerControls}>Features</p>
+            <div className="col-sm-4"></div>
+            <div className={classnames('col-sm-1', classes.headerActions)}>
+                <a className={classes.headerControls} href="javascript:void(0)">Features</a>
             </div>
-            <div className={classnames('col-sm-1', classes.headerCommonWrapper)}>
-                <p className={classes.headerControls}>Docs</p>
+            <div className={classnames('col-sm-1', classes.headerActions)}>
+                <a className={classes.headerControls} href="javascript:void(0)">Docs</a>
             </div>
-            <div className={classnames('col-sm-1', classes.headerCommonWrapper)}>
-                <p className={classes.headerControls}>Feedback</p>
+            <div className={classnames('col-sm-1', classes.headerActions)}>
+                <a className={classes.headerControls} href="javascript:void(0)" onClick={this.openDialog}>Feedback</a>
             </div>
-            <div class="col-sm-1">
+            <DialogBox issuestatus = {this.state.issuestatus} viewtype="issue"  isprocessing={this.state.isprocessing} open={this.state.issueDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
+                          title='Raise an Issue' sectiontype="jiraIssue" />
+            <div>
                 <button className={classes.headerQuickStartButton}>
                 <Link to='/quickStartPlatform' className={classes.buttonLabel}>Quick Start</Link>
                 </button>
@@ -38,9 +66,6 @@ function HeaderCommon(props) {
         </div>
     );
 }
-
-HeaderCommon.propTypes = {
-    classes: PropTypes.object.isRequired
-};
+}
 
 export default withStyles(styles)(HeaderCommon);

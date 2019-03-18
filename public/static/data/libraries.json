@@ -1049,7 +1049,7 @@
               "openjdk_version": "1.8.0"
             }
           ],
-          "Stage": "Cookbook_lbg_openJDK",
+          "Stage": "openJDK Installation",
           "Minimum SolutionVersion": "1.0",
           "Version": "master",
           "Tags": "chef, cookbook, recipe, jdk, openjdk",
@@ -1070,6 +1070,7 @@
           "Solution": "UrbanCode Deploy",
           "Archetype": "UCD_CI",
           "Name": "UCD_CI_IBM_APIC",
+          "Stage": "UCD CI IBM APIC",
           "isMultipleComponent": true
         }
       ]

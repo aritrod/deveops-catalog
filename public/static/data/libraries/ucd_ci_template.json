@@ -6,6 +6,7 @@
                     "Solution": "UrbanCode Deploy",
                     "Archetype": "UCD_CI",
                     "Name": "UCD_CI_IBM_APIC",
+                    "Stage": "UCD CI IBM APIC",
                     "isMultipleComponent": true
                 }
             ]

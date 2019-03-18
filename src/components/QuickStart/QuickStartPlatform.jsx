@@ -56,7 +56,8 @@ class QuickStartPlatform extends Component {
         const { classes } = this.props;
         const { showLandscapeModal } = this.state;
         return (
-            <div> <Header />
+            <div> 
+            {/* <Header /> */}
                 <Dialog
                     open={showLandscapeModal}
                     onClose={this.handleClose}

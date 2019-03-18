@@ -9,7 +9,8 @@ class QuickStartConclusion extends Component {
 
     render() {
         return (
-            <div> <Header />
+            <div> 
+            {/* <Header /> */}
                 <div style={{ textAlign: "center", margin: "1%" }}>
                     <h5>Congratulations your request has been created and pending with our experts. You will shortly receive an email with the details.
                 </h5>

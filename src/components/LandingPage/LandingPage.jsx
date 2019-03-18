@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,29 +8,13 @@ import Typography from '@material-ui/core/Typography';
 import Header from "../Header";
 import Footer from "../Footer";
 import { Link } from 'react-router-dom'
-
-const styles = {
-  card: {
-    minWidth: 50,
-    maxWidth: 500,
-    marginLeft: '5%',
-    marginTop: '2%'
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  media: {
-    height: 170,
-  },
-};
+import styles from "./LandingPage.styles";
+import {
+  withStyles,
+  Grid,
+  IconButton
+} from "@material-ui/core";
+import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
 
 class LandingPage extends Component {
 
@@ -39,50 +22,110 @@ class LandingPage extends Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <Header />
-        <div style={{ textAlign: "center", margin: "1%" }}><h5>One place to run deploy and test your application</h5></div>
-        <div class="row col-sm-8">
-          <div class="col-sm-4">
-            <Card className={classes.card}>
-              <CardMedia
+    <Grid>
+        <Grid container justify="center" spacing={32}>
+            <Grid item xs={12}>
+                <Typography variant="h5" className={classes.subHeading}>One place to run deploy and test your application</Typography>
+             </Grid>
+             <Grid item xs={6}>
+              <Card className={classes.card}>
+              <Grid
                 className={classes.media}
-                image="./static/images/launchpad.jpeg"
-                title="kubernetes_azure"
-              />
-              <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                  Deploy your application using best practice and patterns
+              ></Grid>
+              <CardContent className={classes.cardContent}>
+              <Typography variant="h5" className={classes.cardTitle} color="textSecondary" gutterBottom>
+                  New to devOps commons?
+              </Typography>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>
+                  Deploy your application using all the best practices & patterns
               </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small"><Link to='/quickStartPlatform'>Quick Start</Link></Button>
+              <Button className={classes.btnAction} variant="contained" color="primary">
+                                <Link to='/quickStartPlatform'>Quick Start</Link>
+                            </Button>
               </CardActions>
             </Card>
-          </div>
-          <div class="col-sm-4">
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.media}
-                image="./static/images/devopsone.jpeg"
-                title="kubernetes_azure"
-              />
-              <CardContent>
+          </Grid>
+          <Grid item xs={6}>
+          <Card className={classes.cardfinal}>
+              <Grid className={classes.mediaFinal}></Grid>
+              <CardContent className={classes.cardContent}>
+              <Typography variant="h5" className={classes.cardTitle} color="textSecondary" gutterBottom>
+                  Familiar with Continuous Integration Environment?
+              </Typography>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                  Using existing patterns : Github, Jenkins, Chef, Ansible
+                  Use popular patterns (Github, Jenkins, Nexus, Urbancode deploy)
               </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small"><Link to='/practitioner'>Practitioner</Link></Button>
+              <Button className={classes.btnAction} variant="contained" color="primary">
+                          <Link to='/practitioner'>Practitioner</Link>
+              </Button>
               </CardActions>
             </Card>
-          </div>
-        </div>
-        <div style={{ marginLeft: "2%", marginTop: "1%" }}><a href="https://www.google.com/" target="blank"> Prerequisites</a>
-          <p class="fa fa-question-circle"></p>
-        </div>
-        <Footer />
-      </div>
+          </Grid>
+          {/* <Grid item xs={12}>
+          <a href="#" >
+              Prerequisites
+              <IconButton 
+              color="primary"
+              title="Click to read the help document of this component"
+              target="_blank"
+              rel="noopener noreferrer">
+                <QuestionAnswer/>
+            </IconButton>
+            </a>
+          </Grid> */}
+
+          <Grid item xs={12} className={classes.componentArea}>
+              <Typography variant="h5" className={classes.compTitle} color="textSecondary">
+                    DevOps patterns
+              </Typography>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>
+              Best practises, onboarding, template, deployment & test scripts - easily deployable on the local & cloud.
+              </Typography>
+              <Grid className={classes.componentTiles} container justify="center" spacing={32}>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/pipeline.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/practitioner'>Simplified Pipeline</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/cd.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Continuous Delivery</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/container.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Container Orchestration</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/microservices.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Microservices</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/cloud_infra.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Cloud & Infrastructure</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/bigdata.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Big Data</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/monitor.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Monitoring</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/settings.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Configuration Management</Link>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <img className={classes.compImage} src="./static/images/versioning.png" title = "./static/images/cloud_infra.png"/>
+                    <Link className={classes.compLink} to='/'>Version Control</Link>
+                  </Grid>
+              </Grid>
+          </Grid>
+        </Grid>
+  </Grid>
     );
   }
 }

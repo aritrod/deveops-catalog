@@ -164,7 +164,7 @@ class DialogBox extends React.Component {
   }
   renderTechRadarView(){
     const { classes, title, ...other} = this.props;
-    return (<object className={classes.iframObject} data="http://devops-radar.lbg.eu-gb.mybluemix.net/#/technology-radar/radar?radar=lloyv2" width="100%" height="100%" type="text/html">
+    return (<object className={classes.iframObject} data="https://devops-radar.lbg.eu-gb.mybluemix.net/#/technology-radar/radar?radar=lloyv2" width="100%" height="100%" type="text/html">
             There are some issues while loading the page
           </object>)
   }

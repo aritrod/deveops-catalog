@@ -6,10 +6,11 @@ Tabs,
 Tab,
 withStyles,
 LinearProgress,
-MuiThemeProvider
+MuiThemeProvider,
+Grid
 } from "@material-ui/core";
 import SolutionTab from "../SolutionTab/SolutionTab";
-import styles from "./App.styles";
+import styles from "./Practitioner.styles";
 import theme from "../../theme";
 import store from '../../store/ucd-ci-store.js';
 import { Provider } from 'react-redux';
@@ -20,7 +21,7 @@ import { createIssue } from "../../utils/service.js";
 
 const yaml = require('js-yaml');
 const fs = require("fs");
-class App extends Component {
+class Practitioner extends Component {
 state = {
   currentSol: 0,
   data: null,
@@ -112,11 +113,12 @@ render() {
   const { classes } = this.props;
   const { currentSol, data } = this.state;
   return (
-  <Provider store={store}>
-    <MuiThemeProvider theme={theme}>
+  // <Provider store={store}>
+    // <MuiThemeProvider theme={theme}>
+    <Grid>
       {data ? (
         <div>
-          <Header mode="practitioner" onClickHandler={this.changeHandler.bind(this)} selectedHelpOption= {this.state.selectedHelpOption}/>
+          {/* <Header mode="practitioner" onClickHandler={this.changeHandler.bind(this)} selectedHelpOption= {this.state.selectedHelpOption}/> */}
           <DialogBox issuestatus = {this.state.issuestatus} viewtype="issue"  isprocessing={this.state.isprocessing} open={this.state.issueDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
                           title='Raise an Issue' sectiontype="jiraIssue" />
           <DialogBox viewtype="techRadar"  open={this.state.radarDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
@@ -156,10 +158,11 @@ render() {
       ) : (
         <LinearProgress color="primary" />
       )}
-    </MuiThemeProvider>
-    </Provider>
+    </Grid>
+    // </MuiThemeProvider>
+    // </Provider>
   );
 }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(Practitioner);
