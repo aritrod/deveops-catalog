@@ -1,6 +1,6 @@
 export default theme => ({
     footerPos: {
-        position: "fixed",
+        position: "relative",
         width: "100%",
         textAlign: "center",
         left: 0,
