@@ -62,7 +62,7 @@ class QuickStartCosting extends Component {
             />
             <TextField
               id="outlined-name"
-              label="Project"
+              label="Project name"
               className={classes.textField}
               value={this.state.project}
               onChange={this.handleChange('project')}
@@ -71,7 +71,7 @@ class QuickStartCosting extends Component {
             />
             <TextField
               id="outlined-name"
-              label="GHE Organization"
+              label="GitHub Org name"
               className={classes.textField}
               value={this.state.gheOrg}
               onChange={this.handleChange('gheOrg')}
@@ -80,7 +80,7 @@ class QuickStartCosting extends Component {
             />
             <TextField
               id="outlined-name"
-              label="GHE Service user"
+              label="GitHub org access token"
               className={classes.textField}
               value={this.state.gheService}
               onChange={this.handleChange('gheService')}
@@ -90,7 +90,7 @@ class QuickStartCosting extends Component {
 
             <TextField
               id="outlined-email-input"
-              label="Email"
+              label="Resource owner"
               className={classes.textField}
               type="email"
               name="email"
@@ -101,9 +101,9 @@ class QuickStartCosting extends Component {
             />
 
             <TextField
-              id="outlined-select-currency"
+              id="outlined-select-cluster"
               select
-              label="Select"
+              label="Worker node count"
               className={classes.textField}
               value={this.state.clusterSize}
               onChange={this.handleChange('clusterSize')}
@@ -112,7 +112,7 @@ class QuickStartCosting extends Component {
                   className: classes.menu,
                 },
               }}
-              helperText="Please select your cluster size"
+              helperText="Please select your node count"
               margin="normal"
               variant="outlined"
             >

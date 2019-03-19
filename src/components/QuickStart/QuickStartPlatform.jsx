@@ -17,22 +17,28 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styles from './QuickStart.styles';
 
+
 class QuickStartPlatform extends Component {
     state = {
-        showLandscapeModal: false
+        showLandscapeModal: false,
+        showCapabilityModal: false
     };
+
+    openCapabilityDialog = () => {
+        this.setState({ showCapabilityModal: true });
+    }
 
     handleCardActionClick = () => {
         this.setState({ showLandscapeModal: true });
     }
 
     handleClose = () => {
-        this.setState({ showLandscapeModal: false });
+        this.setState({ showLandscapeModal: false , showCapabilityModal: false});
     };
 
     render() {
         const { classes } = this.props;
-        const { showLandscapeModal } = this.state;
+        const { showLandscapeModal, showCapabilityModal } = this.state;
         return (
             <div> 
             {/* <Header /> */}
@@ -58,7 +64,33 @@ class QuickStartPlatform extends Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Typography variant="h5" className={classes.subHeading}>Tell us your requirements</Typography>
+                <Dialog
+                    open={showCapabilityModal}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogContent>
+                        
+                        <img
+                            src="./static/images/capability.png"
+                            alt="ALF Azure landscape"
+                            height="600" width="1000"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary" >
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <div>
+                    <div>
+                        <Typography variant="h5" className={classes.subHeading}>Tell us your requirements</Typography>
+                    </div>
+                    <div className={classes.capabilitySelection}>
+                        <a className={classes.clickablelink} href="javascript:void(0)" onClick={this.openCapabilityDialog}>Help choose the capability</a>
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-md-3">
                         <Card className={classes.card}>
@@ -157,6 +189,7 @@ class QuickStartPlatform extends Component {
                         </Card>
                     </div>
                 </div>
+                
                 {/*<Footer />*/}
             </div>
         );
