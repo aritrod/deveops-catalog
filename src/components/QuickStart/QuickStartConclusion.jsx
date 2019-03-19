@@ -3,6 +3,8 @@ import Header from "../Header";
 import { Link } from 'react-router-dom'
 import { configs } from "../../configuration.js";
 import { createIssue } from "../../utils/service.js";
+import styles from './QuickStart.styles';
+import { withStyles } from '@material-ui/core/styles';
 
 class QuickStartConclusion extends Component {
     constructor() {
@@ -28,6 +30,8 @@ class QuickStartConclusion extends Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
             <div> 
             {/* <Header /> */}
@@ -43,11 +47,11 @@ class QuickStartConclusion extends Component {
                         height="300" width="300"
                     /><br></br></div>
                 <div style={{ textAlign: "center", margin: "1%" }}>
-                    <Link to='/landing'>Back to catalog</Link>
+                    <Link className={classes.clickablelink} to='/landing'>Back to catalog</Link>
                 </div>
             </div>
         );
     }
 }
 
-export default QuickStartConclusion;
+export default withStyles(styles)(QuickStartConclusion);

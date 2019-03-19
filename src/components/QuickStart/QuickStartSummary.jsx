@@ -13,7 +13,7 @@ class QuickStartSummary extends Component {
         return (
             <div> 
                 <div style={{ textAlign: "center", margin: "1%" }}>
-                    <h5>Based on your selection below is the recommended landscape and cost benefits for you</h5>
+                    <h5>Based on your selection below are the costings for you</h5>
                 </div><br></br>
                 <div>
                     <QuickStartCosting />

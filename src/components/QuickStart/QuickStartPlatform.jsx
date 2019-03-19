@@ -15,46 +15,30 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import styles from './QuickStart.styles';
 
-const styles = {
-    card: {
-        minWidth: 50,
-        maxWidth: 300,
-        marginLeft: '2%',
-        marginTop: '2%'
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    media: {
-        height: 140,
-    },
-};
 
 class QuickStartPlatform extends Component {
     state = {
-        showLandscapeModal: false
+        showLandscapeModal: false,
+        showCapabilityModal: false
     };
+
+    openCapabilityDialog = () => {
+        this.setState({ showCapabilityModal: true });
+    }
 
     handleCardActionClick = () => {
         this.setState({ showLandscapeModal: true });
     }
 
     handleClose = () => {
-        this.setState({ showLandscapeModal: false });
+        this.setState({ showLandscapeModal: false , showCapabilityModal: false});
     };
 
     render() {
         const { classes } = this.props;
-        const { showLandscapeModal } = this.state;
+        const { showLandscapeModal, showCapabilityModal } = this.state;
         return (
             <div> 
             {/* <Header /> */}
@@ -69,9 +53,9 @@ class QuickStartPlatform extends Component {
                             Below is the available landscape you can get as part of this platform
                         </DialogContentText><br></br>
                         <img
-                            src="./static/images/landscape.png"
+                            src="./static/images/landscapefinal.png"
                             alt="ALF Azure landscape"
-                            height="200" width="400"
+                            height="300" width="500"
                         />
                     </DialogContent>
                     <DialogActions>
@@ -80,7 +64,33 @@ class QuickStartPlatform extends Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <div style={{ textAlign: "center", margin: "1%" }}><h5>Available Platforms</h5></div>
+                <Dialog
+                    open={showCapabilityModal}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogContent>
+                        
+                        <img
+                            src="./static/images/capability.png"
+                            alt="ALF Azure landscape"
+                            height="600" width="1000"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary" >
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <div>
+                    <div>
+                        <Typography variant="h5" className={classes.subHeading}>Tell us your requirements</Typography>
+                    </div>
+                    <div className={classes.capabilitySelection}>
+                        <a className={classes.clickablelink} href="javascript:void(0)" onClick={this.openCapabilityDialog}>Help choose the capability</a>
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-md-3">
                         <Card className={classes.card}>
@@ -102,14 +112,16 @@ class QuickStartPlatform extends Component {
                             </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small"><Link to='/quickStartQuestion'>Select</Link></Button>
+                                <Button className={classes.btnSelect} variant="contained" color="primary">
+                                    <Link to='/quickStartQuestion'>Select</Link>
+                                </Button>
                                 <a href="https://azure.microsoft.com/en-gb/overview/what-is-azure/" target='blank'
-                                style={{marginLeft: "23%" }}>
-                                <img
-                                    src="./static/images/rating2.jpeg"
-                                    alt="rating"
-                                    height="25" width="140"
-                                /></a>
+                                    style={{ marginLeft: "23%" }}>
+                                    <img
+                                        src="./static/images/rating2.jpeg"
+                                        alt="rating"
+                                        height="25" width="140"
+                                    /></a>
                             </CardActions>
                         </Card>
                     </div>
@@ -130,7 +142,9 @@ class QuickStartPlatform extends Component {
                                             </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small" disabled><Link to='/quickStartQuestion'>Select</Link></Button>
+                            <Button disabled className={classes.btnSelect} variant="contained" color="primary">
+                                    <Link to='/quickStartQuestion'>Select</Link>
+                                </Button>
                             </CardActions>
                         </Card>
                     </div>
@@ -149,7 +163,9 @@ class QuickStartPlatform extends Component {
                             </CardContent>
                             
                             <CardActions>
-                                <Button size="small" disabled><Link to='/quickStartQuestion'>Select</Link></Button>
+                            <Button disabled className={classes.btnSelect} variant="contained" color="primary">
+                                    <Link to='/quickStartQuestion'>Select</Link>
+                                </Button>
                             </CardActions>
                         </Card>
                     </div>
@@ -166,12 +182,15 @@ class QuickStartPlatform extends Component {
                                             </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small" disabled><Link to='/quickStartQuestion' >Select</Link></Button>
+                            <Button disabled className={classes.btnSelect} variant="contained" color="primary">
+                                    <Link to='/quickStartQuestion'>Select</Link>
+                                </Button>
                             </CardActions>
                         </Card>
                     </div>
                 </div>
-                <Footer />
+                
+                {/*<Footer />*/}
             </div>
         );
     }

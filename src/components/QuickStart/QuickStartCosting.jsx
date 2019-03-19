@@ -11,44 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-  card: {
-    minWidth: 50,
-    maxWidth: 300,
-    marginLeft: '2%',
-    marginTop: '2%',
-    textAlign: 'center'
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  media: {
-    height: 40,
-  },
-});
+import styles from './QuickStart.styles';
 
 const clusterSizes = [
   {
@@ -99,7 +62,7 @@ class QuickStartCosting extends Component {
             />
             <TextField
               id="outlined-name"
-              label="Project"
+              label="Project name"
               className={classes.textField}
               value={this.state.project}
               onChange={this.handleChange('project')}
@@ -108,7 +71,7 @@ class QuickStartCosting extends Component {
             />
             <TextField
               id="outlined-name"
-              label="GHE Organization"
+              label="GitHub Org name"
               className={classes.textField}
               value={this.state.gheOrg}
               onChange={this.handleChange('gheOrg')}
@@ -117,7 +80,7 @@ class QuickStartCosting extends Component {
             />
             <TextField
               id="outlined-name"
-              label="GHE Service user"
+              label="GitHub org access token"
               className={classes.textField}
               value={this.state.gheService}
               onChange={this.handleChange('gheService')}
@@ -127,7 +90,7 @@ class QuickStartCosting extends Component {
 
             <TextField
               id="outlined-email-input"
-              label="Email"
+              label="Resource owner"
               className={classes.textField}
               type="email"
               name="email"
@@ -138,9 +101,9 @@ class QuickStartCosting extends Component {
             />
 
             <TextField
-              id="outlined-select-currency"
+              id="outlined-select-cluster"
               select
-              label="Select"
+              label="Worker node count"
               className={classes.textField}
               value={this.state.clusterSize}
               onChange={this.handleChange('clusterSize')}
@@ -149,7 +112,7 @@ class QuickStartCosting extends Component {
                   className: classes.menu,
                 },
               }}
-              helperText="Please select your cluster size"
+              helperText="Please select your node count"
               margin="normal"
               variant="outlined"
             >
@@ -162,65 +125,72 @@ class QuickStartCosting extends Component {
           </form>
         </div>
         <div className="row">
-        <div className="col-md-3"> 
-          <Card className={classes.card}>
-            <CardContent>
-              <img
-                src="./static/images/large.png"
-                alt="Cloud and infrastructure"
-                height="80" width="80"
-              /><br></br>
-              <p style={{ fontWeight: "bold" }}>Large</p>
-              <p>vCPU: 8</p>
-              <p>Memory: 16GB</p>
-              <p style={{ backgroundColor: "lightgreen" }}>£250/Month</p>
-            </CardContent>
+          <div className="col-md-3">
+            <Card className={classes.card}>
+              <CardContent>
+                <img
+                  src="./static/images/large.png"
+                  alt="Cloud and infrastructure"
+                  height="80" width="80"
+                /><br></br>
+                <p style={{ fontWeight: "bold" }}>Large</p>
+                <p>vCPU: 8</p>
+                <p>Memory: 16GB</p>
+                <p style={{ backgroundColor: "lightgreen" }}>£250/Month</p>
+              </CardContent>
 
-            <CardActions>
-              <Button size="small" style={{ textAlign: "center" }}><Link to='/quickStartConclusion'>Accept</Link></Button>
-            </CardActions>
-          </Card>
-        </div>
-        <div className="col-md-3">
-          <Card className={classes.card}>
-            <CardContent>
-              <img
-                src="./static/images/medium.png"
-                alt="Cloud and infrastructure"
-                height="80" width="80"
-              /><br></br>
-              <p style={{ fontWeight: "bold" }}>Medium</p>
-              <p>vCPU: 4</p>
-              <p>Memory: 8GB</p>
-              <p style={{ backgroundColor: "lightgreen" }}>£200/Month</p>
-            </CardContent>
+              <CardActions>
+                <Button className={classes.btnSelect} variant="contained" color="primary">
+                  <Link to='/quickStartConclusion'>Accept</Link>
+                </Button>
 
-            <CardActions>
-              <Button size="small" style={{ textAlign: "center" }}><Link to='/quickStartConclusion'>Accept</Link></Button>
-            </CardActions>
-          </Card>
-        </div>
-        <div className="col-md-3">
-          <Card className={classes.card}>
-            <CardContent>
-              <img
-                src="./static/images/small.png"
-                alt="Cloud and infrastructure"
-                height="80" width="80"
-              /><br></br>
-              <p style={{ fontWeight: "bold" }}>Small</p>
-              <p>vCPU: 2</p>
-              <p>Memory: 4GB</p>
-              <p style={{ backgroundColor: "lightgreen" }}>£150/Month</p>
-            </CardContent>
+              </CardActions>
+            </Card>
+          </div>
+          <div className="col-md-3">
+            <Card className={classes.card}>
+              <CardContent>
+                <img
+                  src="./static/images/medium.png"
+                  alt="Cloud and infrastructure"
+                  height="80" width="80"
+                /><br></br>
+                <p style={{ fontWeight: "bold" }}>Medium</p>
+                <p>vCPU: 4</p>
+                <p>Memory: 8GB</p>
+                <p style={{ backgroundColor: "lightgreen" }}>£200/Month</p>
+              </CardContent>
 
-            <CardActions>
-              <Button size="small" style={{ textAlign: "center" }}><Link to='/quickStartConclusion'>Accept</Link></Button>
-            </CardActions>
-          </Card>
+              <CardActions>
+                <Button className={classes.btnSelect} variant="contained" color="primary">
+                  <Link to='/quickStartConclusion'>Accept</Link>
+                </Button>
+              </CardActions>
+            </Card>
+          </div>
+          <div className="col-md-3">
+            <Card className={classes.card}>
+              <CardContent>
+                <img
+                  src="./static/images/small.png"
+                  alt="Cloud and infrastructure"
+                  height="80" width="80"
+                /><br></br>
+                <p style={{ fontWeight: "bold" }}>Small</p>
+                <p>vCPU: 2</p>
+                <p>Memory: 4GB</p>
+                <p style={{ backgroundColor: "lightgreen" }}>£150/Month</p>
+              </CardContent>
+
+              <CardActions>
+                <Button className={classes.btnSelect} variant="contained" color="primary">
+                  <Link to='/quickStartConclusion'>Accept</Link>
+                </Button>
+              </CardActions>
+            </Card>
+          </div>
         </div>
-        </div>
-        <Footer />
+        {/*<Footer />*/}
       </div>
     );
   }
