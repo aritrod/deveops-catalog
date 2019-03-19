@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Header from "../Header";
+import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import styles from './QuickStart.styles';
 
 class QuickStartQuestion extends Component {
     constructor() {
@@ -67,10 +70,16 @@ class QuickStartQuestion extends Component {
         }
     }
 
+    onSubmit(event){
+        event.preventDefault();
+    }
+
     render() {
+        const { classes } = this.props;
         return (
-            <div> 
-            {/* <Header /> */}
+            <div>
+                <form onSubmit={this.onSubmit.bind(this)} action="/quickStartSummary">
+                {/* <Header /> */}
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-10 offset-lg-2 col-md-10 col-sm-12 col-xs-12">
@@ -91,32 +100,37 @@ class QuickStartQuestion extends Component {
                                         <option value="7">7</option>
                                         <option value="9">9</option>
                                     </select>
-                                    <label style={{ marginTop: "1%" }}>Project</label>
-                                    <input onChange={this.onChangeProject} value={this.state.project} type="text" className="form-control" id="project" placeholder="Please add your project" />
-                                    <label style={{ marginTop: "1%" }}>Github Enterprise Org</label>
-                                    <input onChange={this.onChangeGHEOrg} value={this.state.gheOrg} type="text" className="form-control" id="gheorg" placeholder="Please add your Github Organization" />
-                                    <label style={{ marginTop: "1%" }}>Github Enterprise service user</label>
-                                    <input onChange={this.onChangeGHEService} value={this.state.gheServiceUser} type="text" className="form-control" id="gheservice" placeholder="Please add your service user" />
-                                    <label style={{ marginTop: "1%" }}>Email id (requestor)</label>
-                                    <input onChange={this.onChangeEmail} value={this.state.email} type="text" className="form-control" id="email" placeholder="Please add your organization email" />
+                                    <label style={{ marginTop: "1%" }}>Project name/resource group name</label>
+                                    <input required onChange={this.onChangeProject} value={this.state.project} type="text" className="form-control" id="project" placeholder="Please add the name you want to use to group your resources" />
+                                    <label style={{ marginTop: "1%" }}>Cost centre code</label>
+                                    <input required onChange={this.onChangeProject} value={this.state.project} type="text" className="form-control" id="project" placeholder="Please add the cost centre that will be charged" />
+                                    <label style={{ marginTop: "1%" }}>Github Enterprise Org name</label>
+                                    <input required onChange={this.onChangeGHEOrg} value={this.state.gheOrg} type="text" className="form-control" id="gheorg" placeholder="Please add your Github Organization" />
+                                    <label style={{ marginTop: "1%" }}>Github Enterprise access token</label>
+                                    <input required onChange={this.onChangeGHEServiceUser} value={this.state.gheServiceUser} type="text" className="form-control" id="gheservice" placeholder="Please add the token that can be used to create and commit to a repository" />
+                                    <label style={{ marginTop: "1%" }}>Resource owner</label>
+                                    <input required onChange={this.onChangeEmail} value={this.state.email} type="text" className="form-control" id="email" placeholder="Please add the email address of the owner of the resources" />
                                     <label style={{ marginTop: "1%" }}>Select tooling</label><br></br>
-                                    <input type="checkbox" name="jenkins" value="1"/> Jenkins<br></br>
-                                    <input type="checkbox" name="nexus" value="2"/> Nexus<br></br>
-                                    <input type="checkbox" name="docker" value="2"/> Docker<br></br>
-                                    <input type="checkbox" name="sonar" value="3" disabled/> Sonar<br></br>
-                                    <input type="checkbox" name="chef" value="4" disabled/> Chef<br></br>
-                                    <input type="checkbox" name="monitoring" value="5" disabled/> Monitoring<br></br>
+                                    <input type="checkbox" name="jenkins" value="1" /> Jenkins<br></br>
+                                    <input type="checkbox" name="nexus" value="2" /> NexusIQ<br></br>
+                                    <input type="checkbox" name="docker" value="2" /> Docker Registry<br></br>
+                                    <input type="checkbox" name="sonar" value="3" disabled /> Sonar<br></br>
+                                    <input type="checkbox" name="speedy" value="4" disabled /> Speedy<br></br>
+                                    <input type="checkbox" name="monitoring" value="5" disabled /> Monitoring<br></br>
                                     <div style={{ marginTop: "1%" }}>
-                                    <Link to='/quickStartSummary'>Submit</Link>
+                                        <Button className={classes.btnSelect} variant="contained" color="primary">
+                                            <Link to='/quickStartSummary'>Submit</Link>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         );
     }
 }
 
-export default QuickStartQuestion;
+export default withStyles(styles)(QuickStartQuestion);
