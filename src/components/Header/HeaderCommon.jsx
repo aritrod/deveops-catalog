@@ -48,7 +48,7 @@ class HeaderCommon extends Component
             </div>
             <div className="col-sm-4"></div>
             <div className={classnames('col-sm-1', classes.headerActions)}>
-                <a className={classes.headerControls} href="javascript:void(0)">Features</a>
+                <a className={classes.headerControls} target="_blank" href="https://monitoring.sandbox.extranet.group/d/qHwSizfmk/ceph-cluster">Features</a>
             </div>
             <div className={classnames('col-sm-1', classes.headerActions)}>
                 <a className={classes.headerControls} href="javascript:void(0)">Docs</a>
@@ -57,7 +57,7 @@ class HeaderCommon extends Component
                 <a className={classes.headerControls} href="javascript:void(0)" onClick={this.openDialog}>Feedback</a>
             </div>
             <DialogBox issuestatus = {this.state.issuestatus} viewtype="issue"  isprocessing={this.state.isprocessing} open={this.state.issueDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
-                          title='Raise an Issue' sectiontype="jiraIssue" />
+                          title='Raise an Issue' sectiontype="jiraIssue" isFullWidth = {false}/>
             <div>
                 <button className={classes.headerQuickStartButton}>
                 <Link to='/quickStartPlatform' className={classes.buttonLabel}>Quick Start</Link>

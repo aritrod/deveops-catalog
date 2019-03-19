@@ -7,5 +7,15 @@ export default theme => ({
     "&:focus":{
       "outline": "none"
     }
+  },
+  showMoreInfo:{
+    height:"20px",
+    width: "20px",
+    cursor: "pointer",
+    color: "#007c43"
+  },
+  tabHolder: {
+    margin: "0",
+    padding: "0"
   }
 });

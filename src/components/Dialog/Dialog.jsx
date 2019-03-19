@@ -21,7 +21,8 @@ class DialogBox extends React.Component {
     jiraStates: {
       title: "",
       body: "",
-      labels: []
+      labels: [],
+      email: ""
     }
   };
   handleClose = () => {
@@ -31,12 +32,14 @@ class DialogBox extends React.Component {
         ...this.state.jiraStates,
         title: "",
         body: "",
-        labels: []
+        labels: [],
+        email: ""
   }
     });
     this.props.onClose();
   };
   handleDone = (details, event) => {
+    details.body = `${details.body} . This issue is raised by ${details.email} .`
     event && event.preventDefault();
     this.props.onDone(details);
     this.setState({ 
@@ -45,7 +48,8 @@ class DialogBox extends React.Component {
         ...this.state.jiraStates,
         title: "",
         body: "",
-        labels: []
+        labels: [],
+        email: ""
     }
   })
   };
@@ -79,14 +83,15 @@ class DialogBox extends React.Component {
     return (
       <div className= {classes.dialogWraper}>
       {this.state.properties.map((property, index)=>{
-        return (<TextField
+        return (
+          <TextField
                 key = {index}
                 label={`Enter Property Name`}
                 className={classes.textField}
                 value={property}
                 onChange={this.handleChange(index)}
-                margin="normal"
-                />)  
+                margin="normal"/>
+        )  
       })}
       <div className={classes.buttonArea}>
       <Button variant="contained" 
@@ -111,7 +116,7 @@ class DialogBox extends React.Component {
               onClick={() => {
                   this.handleClose()
               }}>
-              close
+              Close
       </Button>
       </div>
       </div>
@@ -124,7 +129,9 @@ class DialogBox extends React.Component {
       <div className= {classes.dialogWraper}>
       {Object.keys(jiraStates).map((key, index)=>{
         return (
+          <div>
           <TextField
+                multiline = "true"
                 required
                 key = {index}
                 label={`Enter value for ${key}`}
@@ -133,6 +140,7 @@ class DialogBox extends React.Component {
                 onChange={this.handleJiraChange.bind(this, key)}
                 margin="normal"
                 />
+          </div>
         )
       })}
       <div className={classes.buttonArea}>
@@ -173,8 +181,8 @@ class DialogBox extends React.Component {
     const { classes, title, ...other} = this.props;
     return (
       <Dialog 
-        maxWidth= "lg"
-        fullWidth= {true}
+        maxWidth= {this.props.isFullWidth ? "lg" : "md"}
+        fullWidth= {this.props.isFullWidth}
         autoDetectWindowHeight={false} 
         autoScrollBodyContent={false}
       className={classnames(

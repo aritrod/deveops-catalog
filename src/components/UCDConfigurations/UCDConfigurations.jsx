@@ -43,7 +43,6 @@ class UCDConfigurations extends React.Component {
     saveAs(blob, filename);
   };
   onSubmit(event){
-    debugger;
     event.preventDefault();
     let action = document.activeElement.textContent;
     let states =store.getState().toJS();

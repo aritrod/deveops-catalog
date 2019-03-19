@@ -7,7 +7,13 @@ Tab,
 withStyles,
 LinearProgress,
 MuiThemeProvider,
-Grid
+Grid,
+Dialog,
+DialogTitle,
+DialogContent,
+DialogContentText,
+DialogActions,
+Button
 } from "@material-ui/core";
 import SolutionTab from "../SolutionTab/SolutionTab";
 import styles from "./Practitioner.styles";
@@ -17,6 +23,7 @@ import { Provider } from 'react-redux';
 import DialogBox from '../Dialog';
 import { configs } from "../../configuration.js";
 import { createIssue } from "../../utils/service.js";
+import InfoIcon from '@material-ui/icons/Info';
 // var createIssue = require( 'github-create-issue' );
 
 const yaml = require('js-yaml');
@@ -29,7 +36,8 @@ state = {
   issueDialogOpen: false,
   radarDialogOpen: false,
   issuestatus: null,
-  isprocessing: false
+  isprocessing: false,
+  moreInfoRequired: false
 };
 
 async componentWillMount() {
@@ -87,7 +95,7 @@ async componentWillMount() {
   }});
 }
 
-onTabClick = (event, value) => {
+onTabClick = (value, event) => {
   this.setState({ currentSol: value });
 };
 changeHandler = (event) => {
@@ -108,31 +116,52 @@ handleDialogDone = (issueDetails)=> {
     that.setState({issuestatus: "error", isprocessing: false});
   })
 }
-
+showMoreInfo = ()=> {
+  this.setState({moreInfoRequired: true})
+}
+handleDialogClose = () => {
+  this.setState({moreInfoRequired : false})
+}
 render() {
   const { classes } = this.props;
-  const { currentSol, data } = this.state;
+  const { currentSol, data, moreInfoRequired } = this.state;
   return (
-  // <Provider store={store}>
-    // <MuiThemeProvider theme={theme}>
     <Grid>
       {data ? (
         <div>
-          {/* <Header mode="practitioner" onClickHandler={this.changeHandler.bind(this)} selectedHelpOption= {this.state.selectedHelpOption}/> */}
           <DialogBox issuestatus = {this.state.issuestatus} viewtype="issue"  isprocessing={this.state.isprocessing} open={this.state.issueDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
                           title='Raise an Issue' sectiontype="jiraIssue" />
-          <DialogBox viewtype="techRadar"  open={this.state.radarDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
+          <DialogBox isFullWidth={true} viewtype="techRadar"  open={this.state.radarDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
                           title='Tech Radar' sectiontype="techRadar" />
           <div className={classes.tabs}>
           <Tabs
               value={currentSol}
-              onChange={this.onTabClick}
               indicatorColor="primary"
             >
-              {Object.keys(data).map(sol => (
-                <Tab className={classes.solType} key={sol} label={sol} />
+              {Object.keys(data).map((sol, index) => (
+                <p className={classes.tabHolder}>
+                <Tab onClick={this.onTabClick.bind(this, index)} className={classes.solType} key={sol} label={sol}/>
+                {sol==="Jenkins" && <InfoIcon className={classes.showMoreInfo} onClick={this.showMoreInfo}/>}
+                </p>
               ))}
             </Tabs>
+            <Dialog
+                    open={moreInfoRequired}
+                    onClose={this.handleDialogClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">{"Here are the details: "}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Below is the available landscape you can get as part of this platform
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleDialogClose} color="primary" >
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             {Object.keys(data).map(
               (sol, index) =>
                 currentSol === index ? (
@@ -159,8 +188,6 @@ render() {
         <LinearProgress color="primary" />
       )}
     </Grid>
-    // </MuiThemeProvider>
-    // </Provider>
   );
 }
 }
