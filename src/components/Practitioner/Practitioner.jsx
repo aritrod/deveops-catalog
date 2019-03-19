@@ -150,10 +150,12 @@ render() {
                     onClose={this.handleDialogClose}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
-                    <DialogTitle id="alert-dialog-title">{"Here are the details: "}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{"For more information, visit below URLs: "}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Below is the available landscape you can get as part of this platform
+                            <a className={classes.moreInfoLink} target="_blank" href="https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/charts">Jenkins Helm Chart Repo</a>
+                            <a className={classes.moreInfoLink} target="_blank" href="https://confluence.devops.lloydsbanking.com/display/LCCT/Jenkins+Update+Center">Jenkins Update Centre</a>
+                            <a className={classes.moreInfoLink} target="_blank" href="https://github.lbg.eu-gb.bluemix.net/simplified-pipelines/pipeline_community">Jenkins Community repo</a>
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

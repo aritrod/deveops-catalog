@@ -17,5 +17,12 @@ export default theme => ({
   tabHolder: {
     margin: "0",
     padding: "0"
+  },
+  moreInfoLink: {
+    display: "block",
+    "line-height": "30px",
+    cursor: "pointer",
+    "text-decoration": "underline",
+    color: "#006a4d"
   }
 });
