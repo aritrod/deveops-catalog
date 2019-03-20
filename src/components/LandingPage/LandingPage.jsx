@@ -43,7 +43,7 @@ class LandingPage extends Component {
               ></Grid>
               <CardContent className={classes.cardContent}>
               <Typography variant="h5" className={classes.cardTitle} color="textSecondary" gutterBottom>
-                  New to devOps commons?
+                  New to DevOps commons?
               </Typography>
               <Typography className={classes.title} color="textSecondary" gutterBottom>
                   Deploy your application using all the best practices & patterns
