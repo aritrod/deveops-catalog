@@ -45,24 +45,24 @@ class QuickStartCosting extends Component {
   };
 
   handleClusterChange = name => event => {
-    this.calculateCost();
     this.setState({
       [name]: event.target.value,
     });
+    this.calculateCost(this.state.selectedCost,event.target.value);
   };
 
   handleCostSelection = event => {
-    this.calculateCost();
     this.setState({ selectedCost: event.target.value });
+    this.calculateCost(event.target.value, this.state.clusterSize);
   };
 
-  calculateCost() {
-    let calcCost = this.state.selectedCost * this.state.clusterSize + 100;
+  calculateCost(selectedCost,clusterSize) {
+    let calcCost = selectedCost * clusterSize + 100;
     this.setState({ calculatedCost: calcCost });
   }
 
   componentDidMount() {
-    this.calculateCost();
+    this.calculateCost(this.state.selectedCost,this.state.clusterSize);
   }
 
   render() {
