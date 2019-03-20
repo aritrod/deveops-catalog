@@ -8,10 +8,10 @@ export default theme => ({
         "marginLeft": "2%"
     },
     cardPlatform: {
-        minWidth: '320px',
-        maxWidth: '320px',
+        minWidth: '300px',
+        maxWidth: '300px',
         marginTop: '2%',
-        "min-height": '340px'
+        "min-height": '320px'
     },
     bullet: {
         display: 'inline-block',
@@ -26,8 +26,8 @@ export default theme => ({
     },
     descPlatform: {
         fontSize: 14,
-        minHeight: '65px',
-        maxheight: '30px',
+        minHeight: '45px',
+        maxheight: '45px',
     },
     pos: {
         marginBottom: 12,
@@ -100,6 +100,29 @@ export default theme => ({
     },
     capabilitySelection: {
         margin: '2%',
-        textAlign: 'right'
-    }
+        textAlign: 'right',
+        paddingRight: '1%'
+    },
+    costingDiv: {
+        marginLeft: '1%',
+        marginRight: '1%'
+    },
+    root: {
+        color: '#00864F',
+        '&$checked': {
+          color: '#00864F',
+        },
+        textAlign: 'center'
+      },
+      checked: {},
+      radioSelection:{
+          paddingLeft: '15%'
+      },
+      costingSummaryWrapper: {
+          height: '71%',
+          border: '1px solid #BFBFBF',
+          "background-color": "#FFFF",
+          textAlign: 'center',
+          paddingTop: '4%'
+      }
 });

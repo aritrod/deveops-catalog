@@ -8,22 +8,26 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import styles from './QuickStart.styles';
+import classnames from "classnames";
 
 const clusterSizes = [
   {
-    value: '3',
+    value: 3,
     label: '3',
   },
   {
-    value: '7',
+    value: 7,
     label: '7',
   },
   {
-    value: '9',
+    value: 9,
     label: '9',
   },
 ];
@@ -32,17 +36,34 @@ class QuickStartCosting extends Component {
   state = {
     platform: 'ALF on Azure',
     project: 'Horizontal Scaling',
-    clusterSize: '3',
+    clusterSize: 3,
     gheOrg: 'defaultOrg',
     gheService: 'defaultUser',
-    email: 'default@publicissapient.com'
+    email: 'default@publicissapient.com',
+    selectedCost: '250',
+    calculatedCost: 0
   };
 
-  handleChange = name => event => {
+  handleClusterChange = name => event => {
+    this.calculateCost();
     this.setState({
       [name]: event.target.value,
     });
   };
+
+  handleCostSelection = event => {
+    this.calculateCost();
+    this.setState({ selectedCost: event.target.value });
+  };
+
+  calculateCost() {
+    let calcCost = this.state.selectedCost * this.state.clusterSize + 100;
+    this.setState({ calculatedCost: calcCost });
+  }
+
+  componentDidMount() {
+    this.calculateCost();
+  }
 
   render() {
     const { classes } = this.props;
@@ -50,6 +71,7 @@ class QuickStartCosting extends Component {
     return (
       <div>
         <div>
+          {/*
           <form className={classes.container} noValidate autoComplete="off">
             <TextField
               id="outlined-name"
@@ -122,9 +144,9 @@ class QuickStartCosting extends Component {
                 </MenuItem>
               ))}
             </TextField>
-          </form>
+              </form> */}
         </div>
-        <div className="row">
+        <div className={classnames('row',classes.costingDiv)}>
           <div className="col-md-3">
             <Card className={classes.card}>
               <CardContent>
@@ -140,10 +162,21 @@ class QuickStartCosting extends Component {
               </CardContent>
 
               <CardActions>
-                <Button className={classes.btnSelect} variant="contained" color="primary">
+                <p className={classes.radioSelection} >SELECT</p>
+                <Radio
+                  checked={this.state.selectedCost === '250'}
+                  onChange={this.handleCostSelection.bind(this)}
+                  value="250"
+                  name="radio-button-demo"
+                  aria-label="A"
+                  classes={{
+                    root: classes.root,
+                    checked: classes.checked,
+                  }}
+                />
+                {/*<Button className={classes.btnSelect} variant="contained" color="primary">
                   <Link to='/quickStartConclusion'>Accept</Link>
-                </Button>
-
+                </Button>*/}
               </CardActions>
             </Card>
           </div>
@@ -162,9 +195,21 @@ class QuickStartCosting extends Component {
               </CardContent>
 
               <CardActions>
-                <Button className={classes.btnSelect} variant="contained" color="primary">
+                <p className={classes.radioSelection} >SELECT</p>
+                <Radio
+                    checked={this.state.selectedCost === '200'}
+                    onChange={this.handleCostSelection.bind(this)}
+                    value="200"
+                    name="radio-button-demo"
+                    aria-label="B"
+                    classes={{
+                      root: classes.root,
+                      checked: classes.checked,
+                    }}
+                  />
+                {/* <Button className={classes.btnSelect} variant="contained" color="primary">
                   <Link to='/quickStartConclusion'>Accept</Link>
-                </Button>
+                </Button> */}
               </CardActions>
             </Card>
           </div>
@@ -183,12 +228,66 @@ class QuickStartCosting extends Component {
               </CardContent>
 
               <CardActions>
-                <Button className={classes.btnSelect} variant="contained" color="primary">
+                <p className={classes.radioSelection} >SELECT</p>
+                <Radio
+                    checked={this.state.selectedCost === '150'}
+                    onChange={this.handleCostSelection.bind(this)}
+                    value="150"
+                    name="radio-button-demo"
+                    aria-label="C"
+                    classes={{
+                      root: classes.root,
+                      checked: classes.checked,
+                    }}
+                  />
+                {/* <Button className={classes.btnSelect} variant="contained" color="primary">
                   <Link to='/quickStartConclusion'>Accept</Link>
-                </Button>
+                </Button> */}
               </CardActions>
             </Card>
           </div>
+          <div className="col-md-3">
+            <TextField
+                  id="outlined-select-cluster"
+                  select
+                  label="Worker node count"
+                  className={classes.textField}
+                  value={this.state.clusterSize}
+                  onChange={this.handleClusterChange('clusterSize').bind(this)}
+                  SelectProps={{
+                    MenuProps: {
+                      className: classes.menu,
+                    },
+                  }}
+                  helperText="Please select your node count"
+                  margin="normal"
+                  variant="outlined"
+                >
+                  {clusterSizes.map(option => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+            </TextField>
+            <div className={classes.costingSummaryWrapper}>
+                <div>
+                <p>Estimated monthly recurring charges</p>
+                </div>
+                <div>
+                  <p>{this.state.selectedCost} * {this.state.clusterSize}</p>
+                </div>
+                <div>
+                  <p>Management charges = £100 / Month</p>
+                </div>
+                <div>
+                  <p>Total Cost = £{this.state.calculatedCost} / Month</p>
+                </div>
+                <div style={{height:'3%'}}></div>
+                <Button className={classes.btnSelect} variant="contained" color="primary">
+                  <Link to='/quickStartConclusion'>Accept</Link>
+                </Button>
+            </div>
+        </div>
         </div>
         {/*<Footer />*/}
       </div>
