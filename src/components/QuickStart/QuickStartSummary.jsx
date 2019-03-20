@@ -3,6 +3,8 @@ import Header from "../Header";
 import QuickStartCosting from '../QuickStart/QuickStartCosting'
 import { configs } from "../../configuration.js";
 import { createIssue } from "../../utils/service.js";
+import { withStyles } from '@material-ui/core/styles';
+import styles from './QuickStart.styles';
 
 class QuickStartSummary extends Component {
     state = {
@@ -10,8 +12,10 @@ class QuickStartSummary extends Component {
     };
 
     render() {
+        const { classes } = this.props;
+
         return (
-            <div> 
+            <div className={classes.summaryWrapper}> 
                 <div style={{ textAlign: "center", margin: "1%" }}>
                     <h5>Based on your selection below are the costings for you</h5>
                 </div><br></br>
@@ -23,4 +27,4 @@ class QuickStartSummary extends Component {
     }
 }
 
-export default QuickStartSummary;
+export default withStyles(styles)(QuickStartSummary);

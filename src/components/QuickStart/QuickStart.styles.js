@@ -118,11 +118,38 @@ export default theme => ({
       radioSelection:{
           paddingLeft: '15%'
       },
+      summaryWrapper:{
+        height: '600px',
+        margin: '1%'
+      },
       costingSummaryWrapper: {
           height: '71%',
           border: '1px solid #BFBFBF',
           "background-color": "#FFFF",
           textAlign: 'center',
           paddingTop: '4%'
-      }
+      },
+      conclusionHeading: {
+        "font-size": "32px",
+        "font-weight": "500",
+        "line-height": "40px",
+        paddingLeft: '10px'
+    },
+    conclusionWrapper: {
+        height: '1000px',
+        margin: '2%'
+    },
+    conclusionHeadWrapper: {
+        borderBottom: '1px solid #BFBFBF',
+        paddingBottom: '1%'
+    },
+    conclusionTimeline: {
+        "font-size": "18px",
+        "font-weight": "600",
+        "line-height": "18px",
+        marginTop: '3%'
+    },
+    conclusionMargin: {
+        marginTop: '3%'
+    }
 });

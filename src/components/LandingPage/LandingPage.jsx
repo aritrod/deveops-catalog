@@ -104,31 +104,31 @@ class LandingPage extends Component {
               </Typography>
               <Grid className={classes.componentTiles} container justify="center" spacing={32}>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/pipeline.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_pipeline.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/practitioner'>Simplified Pipeline</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/cd.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_cd.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Continuous Delivery</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/container.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_container.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Container Orchestration</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/microservices.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_microservice.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Microservices</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/cloud_infra.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_cloud_infra.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Cloud & Infrastructure</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/bigdata.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_bigdata.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Big Data</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/monitor.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_monitoring.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Monitoring</Link>
                   </Grid>
                   <Grid item xs={2}>
@@ -136,7 +136,7 @@ class LandingPage extends Component {
                     <Link className={classes.compLink} to='/'>Configuration Management</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/versioning.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/footer_versioning.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Version Control</Link>
                   </Grid>
               </Grid>

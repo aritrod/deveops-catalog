@@ -54,7 +54,7 @@ class QuickStartPlatform extends Component {
                             Below is the available landscape you can get as part of this platform
                         </DialogContentText><br></br>
                         <img
-                            src="./static/images/landscapefinal.png"
+                            src="./static/images/landscapenew.png"
                             alt="ALF Azure landscape"
                             height="300" width="500"
                         />
