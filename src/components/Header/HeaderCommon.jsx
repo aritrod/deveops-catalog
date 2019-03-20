@@ -43,14 +43,14 @@ class HeaderCommon extends Component
                     alt="Lloyds Personal Banking"
                 />
             </div>
-            <div className={classnames('col-sm-2', classes.headerCommonWrapper)}>
+            <div className={classnames('col-sm-3', classes.headerCommonWrapper)}>
                 <p className={classes.headerCommonTitle}>DevOps Commons</p>
             </div>
-            <div className="col-sm-4"></div>
+            <div className="col-sm-3"></div>
             <div className={classnames('col-sm-1', classes.headerActions)}>
                 <a className={classes.headerControls} target="_blank" href="http://monitoring.k8st1.lbg.eu-gb.mybluemix.net/d/at-cost-analysis/analysis-by-cluster?refresh=10s&orgId=1">Features</a>
             </div>
-            <div className={classnames('col-sm-1', classes.headerActions)}>
+            <div className={classnames('col-sm-1', classes.headerActionsGap, classes.headerActions)}>
                 <a className={classes.headerControls} href="javascript:void(0)">Docs</a>
             </div>
             <div className={classnames('col-sm-1', classes.headerActions)}>

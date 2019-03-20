@@ -68,5 +68,8 @@ export default theme => ({
   },
   headerActions: {
     "padding-top": "10px",
+  },
+  headerActionsGap: {
+    "padding-left": "2%",
   }
 });

@@ -110,7 +110,7 @@ class QuickStartPlatform extends Component {
                                 <img
                                         src="./static/images/ratingPlatform1.png"
                                         alt="rating"
-                                        height="120" width="250"
+                                        height="100" width="200"
                                     />
                             </CardContent>
                             </CardActionArea>
@@ -136,7 +136,7 @@ class QuickStartPlatform extends Component {
                                 <img
                                         src="./static/images/ratingPlatform2.png"
                                         alt="rating"
-                                        height="120" width="250"
+                                        height="100" width="200"
                                     />
                             </CardContent>
                             <CardActions>
@@ -161,7 +161,7 @@ class QuickStartPlatform extends Component {
                                 <img
                                         src="./static/images/ratingPlatform3.png"
                                         alt="rating"
-                                        height="120" width="250"
+                                        height="100" width="200"
                                     />
                             </CardContent>
                             <CardActions>
@@ -186,7 +186,7 @@ class QuickStartPlatform extends Component {
                                 <img
                                         src="./static/images/ratingPlatform4.png"
                                         alt="rating"
-                                        height="120" width="250"
+                                        height="100" width="200"
                                     />
                             </CardContent>
                             <CardActions>
