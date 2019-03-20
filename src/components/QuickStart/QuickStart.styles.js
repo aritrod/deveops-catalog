@@ -5,13 +5,13 @@ export default theme => ({
         "line-height": "40px",
         "marginTop": "40px",
         "marginBottom": "20px",
-        "marginLeft": "10px"
+        "marginLeft": "2%"
     },
-    card: {
-        minWidth: 50,
-        maxWidth: 300,
-        marginLeft: '2%',
-        marginTop: '2%'
+    cardPlatform: {
+        minWidth: '320px',
+        maxWidth: '320px',
+        marginTop: '2%',
+        "min-height": '340px'
     },
     bullet: {
         display: 'inline-block',
@@ -19,13 +19,35 @@ export default theme => ({
         transform: 'scale(0.8)',
     },
     title: {
+        fontSize: 18,
+        minHeight: '20px',
+        maxheight: '20px',
+        fontWeight: 'bold'
+    },
+    descPlatform: {
         fontSize: 14,
+        minHeight: '65px',
+        maxheight: '30px',
     },
     pos: {
         marginBottom: 12,
     },
     media: {
         height: 140,
+        "background-size": "50%",
+        backgroundColor: "#CAEAFF"
+    },
+    image1: {
+        "background-image": "url('./static/images/azurefinal.png')"
+    },
+    image2: {
+        "background-image": "url('./static/images/azurefinal.png')"
+    },
+    image3: {
+        "background-image": "url('./static/images/ibmcloud.png')"
+    },
+    image4: {
+        "background-image": "url('./static/images/ibmcloud.png')"
     },
     btnSelect: {
         "background-color": "#00864F",
@@ -35,6 +57,9 @@ export default theme => ({
         "& a": {
             color: "#ffffff"
         }
+    },
+    ratingDiv: {
+        width: '65%'
     },
     container: {
         display: 'flex',

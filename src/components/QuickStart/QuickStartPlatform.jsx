@@ -16,6 +16,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styles from './QuickStart.styles';
+import classnames from "classnames";
 
 
 class QuickStartPlatform extends Component {
@@ -68,7 +69,8 @@ class QuickStartPlatform extends Component {
                     open={showCapabilityModal}
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description">
+                    aria-describedby="alert-dialog-description"
+                    maxWidth= "lg">
                     <DialogContent>
                         
                         <img
@@ -88,101 +90,107 @@ class QuickStartPlatform extends Component {
                         <Typography variant="h5" className={classes.subHeading}>Tell us your requirements</Typography>
                     </div>
                     <div className={classes.capabilitySelection}>
-                        <a className={classes.clickablelink} href="javascript:void(0)" onClick={this.openCapabilityDialog}>Help choose the capability</a>
+                        <a className={classes.clickablelink} href="javascript:void(0)" onClick={this.openCapabilityDialog}>HELP CHOOSE THE CAPABILITY</a>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row" style={{ marginLeft: "1%", marginRight: "1%" }}>
                     <div className="col-md-3">
-                        <Card className={classes.card}>
+                        <Card className={classes.cardPlatform}>
                         <CardActionArea onClick={this.handleCardActionClick}>
                             <CardMedia
-                                className={classes.media}
-                                image="./static/images/azureNew.jpeg"
-                                title="Azure"
+                                className={classnames(classes.media,classes.image1)}
                             />
                             <CardContent>
                                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                                     ALF on Azure
-                                            </Typography>
-                                <Typography component="p">
-                                    <br />
-                                    Develop and deploy where you want, with the only consistent hybrid cloud on the market.
-                                    Extend Azure on-premises with Azure Stack.
-                                            </Typography>
+                                </Typography>
+                                <Typography component="p" className={classes.descPlatform}>
+                                    A dedicated Kubernetes cluster on Azure public Cloud
+                                </Typography>
+                                <img
+                                        src="./static/images/ratingPlatform1.png"
+                                        alt="rating"
+                                        height="120" width="250"
+                                    />
                             </CardContent>
                             </CardActionArea>
                             <CardActions>
                                 <Button className={classes.btnSelect} variant="contained" color="primary">
                                     <Link to='/quickStartQuestion'>Select</Link>
                                 </Button>
-                                <a href="https://azure.microsoft.com/en-gb/overview/what-is-azure/" target='blank'
-                                    style={{ marginLeft: "23%" }}>
-                                    <img
-                                        src="./static/images/rating2.jpeg"
+                            </CardActions>
+                        </Card>
+                    </div>
+                    <div className="col-md-3" style={{ opacity: '.4' }}>
+                        <Card className={classes.cardPlatform}>
+                            <CardMedia
+                                className={classnames(classes.media,classes.image2)}
+                            />
+                            <CardContent>
+                                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                                    Azure Disconnected
+                                </Typography>
+                                <Typography component="p" className={classes.descPlatform}>
+                                    A Private Azure subscription with no LBG access
+                                </Typography>
+                                <img
+                                        src="./static/images/ratingPlatform2.png"
                                         alt="rating"
-                                        height="25" width="140"
-                                    /></a>
-                            </CardActions>
-                        </Card>
-                    </div>
-                    <div className="col-md-3" style={{ opacity: '.4' }}>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                className={classes.media}
-                                image="./static/images/kubernetesNew.jpeg"
-                                title="Kubernetes"
-                            />
-                            <CardContent>
-                                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                    kubernetes Sandbox
-                                            </Typography>
-                                <Typography component="p" inline={true} style={{ maxHeight: "30" }}>
-                                    <br />
-                                    It groups containers that make up an application into logical units for easy management and discovery.
-                                            </Typography>
+                                        height="120" width="250"
+                                    />
                             </CardContent>
                             <CardActions>
-                            <Button disabled className={classes.btnSelect} variant="contained" color="primary">
+                                <Button disabled className={classes.btnSelect} variant="contained" color="primary">
                                     <Link to='/quickStartQuestion'>Select</Link>
                                 </Button>
                             </CardActions>
                         </Card>
                     </div>
                     <div className="col-md-3" style={{ opacity: '.4' }}>
-                        <Card className={classes.card}>
-                        
+                        <Card className={classes.cardPlatform}>
                             <CardMedia
-                                className={classes.media}
-                                image="./static/images/k8_azure.png"
-                                title="kubernetes_azure"
+                                className={classnames(classes.media,classes.image3)}
                             />
                             <CardContent>
                                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                    kubernetes Azure Stack
-                                            </Typography>
+                                    Sandbox
+                                </Typography>
+                                <Typography component="p" className={classes.descPlatform}>
+                                    External, private cloud hosted by IBM
+                                </Typography>
+                                <img
+                                        src="./static/images/ratingPlatform3.png"
+                                        alt="rating"
+                                        height="120" width="250"
+                                    />
                             </CardContent>
-                            
                             <CardActions>
-                            <Button disabled className={classes.btnSelect} variant="contained" color="primary">
+                                <Button disabled className={classes.btnSelect} variant="contained" color="primary">
                                     <Link to='/quickStartQuestion'>Select</Link>
                                 </Button>
                             </CardActions>
                         </Card>
                     </div>
                     <div className="col-md-3" style={{ opacity: '.4' }}>
-                        <Card className={classes.card}>
-                        <CardMedia
-                                className={classes.media}
-                                image="./static/images/aurora.png"
-                                title="Kubernetes"
+                        <Card className={classes.cardPlatform}>
+                            <CardMedia
+                                className={classnames(classes.media, classes.image4)}
                             />
                             <CardContent>
                                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                    kubernetes Aurora
-                                            </Typography>
+                                    Aurora
+                                </Typography>
+                                <Typography component="p" className={classes.descPlatform}>
+                                    Internal, Private Cloud hosted by IBM
+                                </Typography>
+                                <img
+                                        src="./static/images/ratingPlatform4.png"
+                                        alt="rating"
+                                        height="120" width="250"
+                                    />
                             </CardContent>
                             <CardActions>
-                            <Button disabled className={classes.btnSelect} variant="contained" color="primary">
+                                <Button disabled className={classes.btnSelect} variant="contained" color="primary">
                                     <Link to='/quickStartQuestion'>Select</Link>
                                 </Button>
                             </CardActions>
