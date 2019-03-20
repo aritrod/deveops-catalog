@@ -70,7 +70,8 @@ export default theme => ({
         width: '160px',
         color: "#00864F",
         border: '1px solid #00864F',
-        padding: '10px'
+        padding: '10px',
+        "font-weight": "bold"
     },
     capabilitySelection: {
         margin: '2%',

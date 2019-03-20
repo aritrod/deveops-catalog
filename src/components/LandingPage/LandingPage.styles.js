@@ -8,12 +8,19 @@ export default theme => ({
     "font-weight" : "420",
     "line-height": "40px",
     "text-align": "center",
-    "marginTop": "60px"
+    "marginTop": "30px",
+    "marginBottom": "30px"
+  },
+  compButton: {
+    "margin-left": "10px",
+    "&:focus":{
+      "outline": "none"
+    }
   },
   card: {
     minWidth: "500px",
     maxWidth: "550px",
-    float: "right",
+    // float: "right",
     "text-align": "center",
     "height": "610px",
     background: "radial-gradient(circle, #CAEAFF 0%, #F4FDFF 100%)"
@@ -23,7 +30,7 @@ export default theme => ({
     "height": "610px",
     minWidth: "500px",
     maxWidth: "550px",
-    float: "left",
+    // float: "left",
     "text-align": "center"
   },
   "media":{
@@ -67,10 +74,13 @@ export default theme => ({
   btnAction: {
     "background-color": "#00864F",
     "height": "45px",
-    margin: "0 auto",
     "border-radius": "0%",
+     margin: "0 auto",
     "& a": {
       color: "#ffffff"
+    },
+    "&:focus":{
+      "outline": "none"
     }
   },
   componentArea: {
@@ -98,9 +108,20 @@ export default theme => ({
     "text-decoration": "underline",
     color: "#00864F",
     "font-size": "18px",
-    "line-height": "20px"
+    "line-height": "20px",
+    "&:focus":{
+      "outline": "none"
+    }
   },
   componentTiles:{
     "margin-top":"15px"
+  },
+  topContainer: {
+    "padding": "20px 200px"
+  },
+  tooltipContent: {
+    border:"solid 1px red",
+    width: "200px",
+    height: "200px"
   }
 });

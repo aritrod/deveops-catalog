@@ -14,10 +14,18 @@ import {
   Grid,
   IconButton
 } from "@material-ui/core";
-import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
+import HelpIcon from "@material-ui/icons/Help";
 
 class LandingPage extends Component {
-
+  state = {
+    tooltipOpen: false
+  }
+  closeTooltip(){
+    this.setState({tooltipOpen: false})
+  }
+  openTooltip(){
+    this.setState({tooltipOpen: true})
+  }
   render() {
     const { classes } = this.props;
 
@@ -25,8 +33,9 @@ class LandingPage extends Component {
     <Grid>
         <Grid container justify="center" spacing={32}>
             <Grid item xs={12}>
-                <Typography variant="h5" className={classes.subHeading}>One stop shop to run, deploy and test your application</Typography>
+                <Typography variant="h5" className={classes.subHeading}>One place to run deploy and test your application</Typography>
              </Grid>
+             <Grid className={classes.topContainer} container justify="center" spacing={32}>
              <Grid item xs={6}>
               <Card className={classes.card}>
               <Grid
@@ -65,19 +74,26 @@ class LandingPage extends Component {
               </CardActions>
             </Card>
           </Grid>
-          {/* <Grid item xs={12}>
-          <a href="#" >
+          <Grid item xs={12}>
+          <a className= {classes.compLink} onClick={this.openTooltip.bind(this)} href="javascript:void(0)" >
               Prerequisites
               <IconButton 
+              className= {classes.compButton}
               color="primary"
-              title="Click to read the help document of this component"
-              target="_blank"
+              title="open prerequisites"
               rel="noopener noreferrer">
-                <QuestionAnswer/>
+                <HelpIcon/>
             </IconButton>
             </a>
-          </Grid> */}
-
+            {this.state.tooltipOpen && 
+            <div className={classes.tooltipContent}>
+              <a className = {classes.compLink} href="javascript:void(0)" onClick={this.closeTooltip.bind(this)}>X</a>
+              <p>
+                This is the tooltip content
+              </p>
+            </div>}
+          </Grid>
+          </Grid>
           <Grid item xs={12} className={classes.componentArea}>
               <Typography variant="h5" className={classes.compTitle} color="textSecondary">
                     DevOps patterns
@@ -87,39 +103,39 @@ class LandingPage extends Component {
               </Typography>
               <Grid className={classes.componentTiles} container justify="center" spacing={32}>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_pipeline.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/pipeline.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/practitioner'>Simplified Pipeline</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_cd.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/cd.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Continuous Delivery</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_container.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/container.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Container Orchestration</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_microservice.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/microservices.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Microservices</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_cloud_infra.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/cloud_infra.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Cloud & Infrastructure</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_bigdata.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/bigdata.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Big Data</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_monitoring.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/monitor.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Monitoring</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_cm.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/settings.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Configuration Management</Link>
                   </Grid>
                   <Grid item xs={2}>
-                    <img className={classes.compImage} src="./static/images/footer_versioning.png" title = "./static/images/cloud_infra.png"/>
+                    <img className={classes.compImage} src="./static/images/versioning.png" title = "./static/images/cloud_infra.png"/>
                     <Link className={classes.compLink} to='/'>Version Control</Link>
                   </Grid>
               </Grid>

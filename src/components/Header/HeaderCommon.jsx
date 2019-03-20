@@ -48,7 +48,7 @@ class HeaderCommon extends Component
             </div>
             <div className="col-sm-4"></div>
             <div className={classnames('col-sm-1', classes.headerActions)}>
-                <a className={classes.headerControls} target="_blank" href="https://monitoring.sandbox.extranet.group/d/qHwSizfmk/ceph-cluster">Features</a>
+                <a className={classes.headerControls} target="_blank" href="http://monitoring.k8st1.lbg.eu-gb.mybluemix.net/d/at-cost-analysis/analysis-by-cluster?refresh=10s&orgId=1">Features</a>
             </div>
             <div className={classnames('col-sm-1', classes.headerActions)}>
                 <a className={classes.headerControls} href="javascript:void(0)">Docs</a>

@@ -27,14 +27,16 @@ export default theme => ({
         color: '#00864F',	
         "font-size": '16px',	
         "font-weight": 500,	
-        "line-height": '17px'
+        "line-height": '17px',
+        "font-weight": "bold",
+        "cursor": "pointer"
     },
-    footerLabel: {
-        	
+    footerLabel: {	
         color: '#00864F',	
         "font-size": '14px',	
         "font-weight": 500,	
         "line-height": '17px'
+        
     }
   });
   

@@ -53,10 +53,7 @@ export default theme => ({
     backgroundColor: '#00864F',
     "height": "45px",
     "margin": "0 auto",
-    "border-radius":" 0%",
-    "& a": {
-      color: "#ffffff"
-    }
+    "border-radius":" 0%"
   },
   buttonLabel: {	
     color: '#FFFFFF',
