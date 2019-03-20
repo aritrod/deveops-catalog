@@ -20,8 +20,7 @@ class DialogBox extends React.Component {
     properties : [""],
     jiraStates: {
       title: "",
-      body: "",
-      labels: [],
+      description: "",
       email: ""
     }
   };
@@ -31,15 +30,14 @@ class DialogBox extends React.Component {
       jiraStates: {
         ...this.state.jiraStates,
         title: "",
-        body: "",
-        labels: [],
+        description: "",
         email: ""
   }
     });
     this.props.onClose();
   };
   handleDone = (details, event) => {
-    details.body = `${details.body} . This issue is raised by ${details.email} .`
+    details.body = `${details.description} . This issue is raised by ${details.email} .`
     event && event.preventDefault();
     this.props.onDone(details);
     this.setState({ 
@@ -47,8 +45,7 @@ class DialogBox extends React.Component {
       jiraStates: {
         ...this.state.jiraStates,
         title: "",
-        body: "",
-        labels: [],
+        description: "",
         email: ""
     }
   })
@@ -62,7 +59,6 @@ class DialogBox extends React.Component {
   };
   handleJiraChange = (key, event) => {
     let val = event.target.value;
-    if(key==="labels") val = val.split(",");
     this.setState({
       jiraStates: {
             ...this.state.jiraStates,

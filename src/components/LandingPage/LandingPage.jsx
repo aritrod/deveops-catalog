@@ -33,7 +33,7 @@ class LandingPage extends Component {
     <Grid>
         <Grid container justify="center" spacing={32}>
             <Grid item xs={12}>
-                <Typography variant="h5" className={classes.subHeading}>One stop shop to run, deploy & test your application</Typography>
+                <Typography variant="h5" className={classes.subHeading}>One stop shop to deploy, run & test your application</Typography>
              </Grid>
              <Grid className={classes.topContainer} container justify="center" spacing={32}>
              <Grid item xs={6}>
