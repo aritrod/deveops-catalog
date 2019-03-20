@@ -34,7 +34,7 @@ export default theme => ({
   },
   headerCommonTitle: {	
     color: '#6C6C6C',	
-    fontSize: '26px',	
+    fontSize: '22px',	
     "padding-top": "6px",
     fontWeight: 500,	
     lineHeight: '28px'
@@ -56,10 +56,11 @@ export default theme => ({
     "border-radius":" 0%"
   },
   buttonLabel: {	
-    color: '#FFFFFF',
-    fontSize: '17px',	
-    fontWeight: 500,	
-    ineHeight: '17px'
+    "color": "#FFFFFF",
+    "font-size": "14px",
+    "line-height": "17px",
+    "font-weight": "500",
+    "padding": "8px"
   },
   headerCommonWrapper: {
     "padding-top": "10px",

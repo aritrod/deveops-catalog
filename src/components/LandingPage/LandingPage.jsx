@@ -33,7 +33,7 @@ class LandingPage extends Component {
     <Grid>
         <Grid container justify="center" spacing={32}>
             <Grid item xs={12}>
-                <Typography variant="h5" className={classes.subHeading}>One place to run deploy and test your application</Typography>
+                <Typography variant="h5" className={classes.subHeading}>One stop shop to run, deploy & test your application</Typography>
              </Grid>
              <Grid className={classes.topContainer} container justify="center" spacing={32}>
              <Grid item xs={6}>
@@ -74,8 +74,8 @@ class LandingPage extends Component {
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12}>
-          <a className= {classes.compLink} onClick={this.openTooltip.bind(this)} href="javascript:void(0)" >
+          <Grid item xs={12} className={classes.tooptipWrapper}>
+          <a className= {classes.tooltipLink} onClick={this.openTooltip.bind(this)} href="javascript:void(0)" >
               Prerequisites
               <IconButton 
               className= {classes.compButton}
@@ -87,9 +87,10 @@ class LandingPage extends Component {
             </a>
             {this.state.tooltipOpen && 
             <div className={classes.tooltipContent}>
-              <a className = {classes.compLink} href="javascript:void(0)" onClick={this.closeTooltip.bind(this)}>X</a>
-              <p>
-                This is the tooltip content
+              <a className = {classes.tooltipClose} href="javascript:void(0)" onClick={this.closeTooltip.bind(this)}>X</a>
+              <p className={classes.tooltipparagraph}>
+              You code needs to be stored in GitHub Enterprise <a className = {classes.tooltipRedirect} href="javascript:void(0)">Know more</a><br />
+              A valid service account setup on ALF <a className = {classes.tooltipRedirect} href="javascript:void(0)">Know more</a>
               </p>
             </div>}
           </Grid>

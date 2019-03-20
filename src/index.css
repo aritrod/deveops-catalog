@@ -1,9 +1,16 @@
-body {
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100%;
+@font-face {
   font-family: "Avenir Next LT Pro";
-  background-color: #F5F5F5
-}
+  src: url("./fonts/AvenirNextLTPro-Regular.otf");
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100%;
+    font-family: "Avenir Next LT Pro";
+    background-color: #F5F5F5
+  }
+  h5,p,div,a{
+    font-family: "Avenir Next LT Pro" !important;
+  }
