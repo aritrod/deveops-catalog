@@ -43,7 +43,7 @@ class HeaderCommon extends Component
                     alt="Lloyds Personal Banking"
                 />
             </div>
-            <div className={classnames('col-sm-3', classes.headerCommonWrapper)}>
+            <div className={classnames('col-sm-2', classes.headerCommonWrapper)}>
                 <p className={classes.headerCommonTitle}>DevOps Commons</p>
             </div>
             <div className="col-sm-3"></div>
@@ -57,8 +57,8 @@ class HeaderCommon extends Component
                 <a className={classes.headerControls} href="javascript:void(0)" onClick={this.openDialog}>Feedback</a>
             </div>
             <DialogBox issuestatus = {this.state.issuestatus} viewtype="issue"  isprocessing={this.state.isprocessing} open={this.state.issueDialogOpen} onClose={this.handleDialogClose} onDone={this.handleDialogDone.bind(this)}
-                          title='Raise an Issue' sectiontype="jiraIssue" isFullWidth = {false}/>
-            <div>
+                          title='Feedback: Please provide below details' sectiontype="jiraIssue" isFullWidth = {false}/>
+            <div className={classnames('col-sm-2', classes.headerQuickStart)}>
                 <button className={classes.headerQuickStartButton}>
                 <Link to='/quickStartPlatform' className={classes.buttonLabel}>Quick Start</Link>
                 </button>

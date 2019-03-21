@@ -71,5 +71,9 @@ export default theme => ({
   },
   headerActionsGap: {
     "padding-left": "2%",
+  },
+  headerQuickStart: {
+    "text-align": "right",
+    "padding-right": "35px"
   }
 });

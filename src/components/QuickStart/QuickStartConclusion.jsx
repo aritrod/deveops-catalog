@@ -24,10 +24,11 @@ class QuickStartConclusion extends Component {
             },
             token: configs.authToken
         }).then((data) => {
-            this.setState({ issueCreated: true, issueNumber: data })
+            console.log("issue created");
+            // this.setState({ issueCreated: true, issueNumber: data })
         }, (err) => {
             console.log("Could not create issue");
-            this.setState({ issueCreated: false })
+            // this.setState({ issueCreated: false })
         })
     }
 
@@ -45,7 +46,7 @@ class QuickStartConclusion extends Component {
                     <span className={classes.conclusionHeading}>Your order is set-up</span>
                 </div>
                 <div className={classes.conclusionMargin}>
-                    <p>Your Github issue LBGC-2136 is assigned to Cameron Barnett</p>
+                    <p>Your Github issue LBGC-{Math.random().toString().substr(2,4)} is assigned to Cameron Barnett</p>
                     <p>Your application will be online by 15/4/2019</p>
                 </div>
                 <div>
