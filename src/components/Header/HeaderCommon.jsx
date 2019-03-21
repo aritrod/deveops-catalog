@@ -37,16 +37,18 @@ class HeaderCommon extends Component
     return (
         <div className={classnames('row', 'col-sm-12', classes.headerCommon)}>
             <div className={classnames('col-sm-2')}>
+            <Link to='/landing'>
                 <img
                     className={classes.headerCommonImage}
                     src="./static/images/lloyds_banking_header_logo.png"
                     alt="Lloyds Personal Banking"
                 />
+                </Link>
             </div>
-            <div className={classnames('col-sm-2', classes.headerCommonWrapper)}>
-                <p className={classes.headerCommonTitle}>DevOps Commons</p>
+            <div className={classnames('col-sm-3', classes.headerCommonWrapper)}>
+                <p className={classes.headerCommonTitle}>DevOps Commons <sup style={{fontSize:'10px'}}> BETA </sup></p>
             </div>
-            <div className="col-sm-3"></div>
+            <div className="col-sm-2"></div>
             <div className={classnames('col-sm-1', classes.headerActions)}>
                 <a className={classes.headerControls} target="_blank" href="http://monitoring.k8st1.lbg.eu-gb.mybluemix.net/d/at-cost-analysis/analysis-by-cluster?refresh=10s&orgId=1">Features</a>
             </div>
