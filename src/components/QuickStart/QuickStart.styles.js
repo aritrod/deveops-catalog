@@ -151,5 +151,20 @@ export default theme => ({
     },
     conclusionMargin: {
         marginTop: '3%'
-    }
+    },
+    error: {
+        color: "red"
+    },
+    compLink:{
+        "font-weight": "500",
+        "text-decoration": "underline",
+        color: "#00864F",
+        "font-size": "16px",
+        "line-height": "20px",
+        "float": "left",
+        "width":"100%",
+        "&:focus":{
+          "outline": "none"
+        }
+      },
 });

@@ -11,7 +11,8 @@ class QuickStartConclusion extends Component {
         super();
         this.state = {
             issueCreated: false,
-            issueNumber: ''
+            issueURL: '',
+            issueID: ''
         }
     }
     componentDidMount() {
@@ -25,29 +26,38 @@ class QuickStartConclusion extends Component {
             token: configs.authToken
         }).then((data) => {
             console.log("issue created");
-            // this.setState({ issueCreated: true, issueNumber: data })
+            this.setState({ issueCreated: "true", issueURL: data.html_url, issueID: data.id})
         }, (err) => {
             console.log("Could not create issue");
-            // this.setState({ issueCreated: false })
+            this.setState({ issueCreated: "false" })
         })
     }
 
     render() {
         const { classes } = this.props;
-
+debugger;
         return (
             <div className={classes.conclusionWrapper}>
-                <div className={classes.conclusionHeadWrapper}>
-                    <img
-                        src="./static/images/solidcheck.png"
-                        alt=""
-                        height="50" width="50"
-                    />
-                    <span className={classes.conclusionHeading}>Your order is set-up</span>
-                </div>
                 <div className={classes.conclusionMargin}>
-                    <p>Your Github issue LBGC-{Math.random().toString().substr(2,4)} is assigned to Cameron Barnett</p>
-                    <p>Your application will be online by 15/4/2019</p>
+                    { this.state.issueCreated==="true" && 
+                        (
+                            <div className={classes.conclusionHeadWrapper}>
+                        <p>
+                        <img
+                                src="./static/images/solidcheck.png"
+                                alt=""
+                                height="50" width="50"
+                        />
+                            <span className={classes.conclusionHeading}>Your order is set-up</span>
+                            </p>
+                            <p className={classes.success}>Your Github issue is created, Here are the details: </p>
+                            <p>Issue ID - {this.state.issueID}</p>
+                            <a className={classes.compLink} href={this.state.issueURL} target="_blank">{this.state.issueURL}</a>
+                            <p>Your application will be online by 15/4/2019</p>
+                            <p>We will keep you posted for further updates.</p>
+                        </div>
+                        )
+                    }
                 </div>
                 <div>
                     <img
