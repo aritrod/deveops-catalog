@@ -109,35 +109,35 @@ class LandingPage extends Component {
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/footer_cd.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Continuous Delivery</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/UrbanCode/ucd_community'>Continuous Delivery</a>
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/footer_container.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Container Orchestration</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/containers/containers_community'>Container Orchestration</a>
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/footer_microservice.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Microservices</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/ET-microservices/microservices_community'>Microservices</a>
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/footer_cloud_infra.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Cloud & Infrastructure</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/communities/Cloud-infrastructure'>Cloud & Infrastructure</a>
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/footer_bigdata.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Big Data</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/Bigdata/bigdata_community'>Big Data</a>
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/footer_monitoring.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Monitoring</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/monitoring/monitoring_community'>Monitoring</a>
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/settings.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Configuration Management</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/ansible-galaxy/ansible_community'>Configuration Management</a>
                   </Grid>
                   <Grid item xs={2}>
                     <img className={classes.compImage} src="./static/images/footer_versioning.png" title = "./static/images/cloud_infra.png"/>
-                    <Link className={classes.compLink} to='/'>Version Control</Link>
+                    <a className={classes.compLink} target="_blank" href='https://github.lbg.eu-gb.bluemix.net/Github-Onboarding/github_onboarding_community'>Version Control</a>
                   </Grid>
               </Grid>
           </Grid>
