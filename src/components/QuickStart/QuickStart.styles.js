@@ -58,6 +58,17 @@ export default theme => ({
             color: "#ffffff"
         }
     },
+    exportJsonBtn: {
+        "background-color": "#00864F",
+        "height": "40px",
+        margin: "0 auto",
+        "border-radius": "0%",
+        "& a": {
+            color: "#ffffff"
+        },
+        marginLeft: '1%',
+        marginBottom: '14%'
+    },
     ratingDiv: {
         width: '65%'
     },
@@ -167,4 +178,8 @@ export default theme => ({
           "outline": "none"
         }
       },
+      jsonExport:{
+        "text-align": "left",
+        marginTop: '2%'
+      }
 });
